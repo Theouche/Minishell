@@ -26,7 +26,7 @@ void	ft_getenv(t_data *data, char **env)
 		data->cpyenv[i] = ft_strdup(env[i]);
 		i++;
 	}
-
+	data->cpyenv[i] = 0;
 }
 
 void	ft_getpath(t_data *data)

@@ -74,9 +74,23 @@ void	ft_free_split(char **tab)
 {
 	int	i;
 
+	if (!tab)
+		printf("------- NOT TQB\n");
+
+	//printf("\n\n\n\n\nqvqnt whilllllllllllllllllllll\n");
 	i = 0;
+	printf("\n\n\ndebut check\n");
+	check_tab(tab);
+	printf("\n\n\ndebut free\n");
 	while (tab[i])
-		free(tab[i++]);
+	{
+	//	printf("free i=%d\n", i);
+		printf("free i=%d : %s\n", i, tab[i]);
+		free(tab[i]);
+		printf("ok\n");
+		i++;
+	}
+	//printf("apres whilllllllllllllllllllll\n\n\n\n\n");
 	free(tab);
 }
 

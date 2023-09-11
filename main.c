@@ -70,6 +70,9 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data) * 1);
 	//lst_cmd = malloc(sizeof(t_list) * 1);
 	ft_init(data, env);
+
+	add_history("unset USER");
+	add_history("export salut=ok bien=ok cool=ok");
 	while (42)
 	{
 		prompt = ft_readline();

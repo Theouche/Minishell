@@ -20,7 +20,7 @@ int	apply_env(t_data *data, char **env)
 
 	i = -1;
 	while (data->cpyenv[++i])
-		ft_printf("%s\n", data->cpyenv[i]);
+		ft_printf("%d ---- %s\n", i, data->cpyenv[i]);
 	//ft_printf("%s\n", getcwd(NULL, 0));
 	return (3);
 }

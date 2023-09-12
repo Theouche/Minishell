@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:15:22 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/04 11:44:06 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/12 14:46:20 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int     apply_cd(t_data *data, char **env);
 int		apply_export(t_data *data);
 int 	apply_unset(t_data *data);
 void	do_export_no_name(t_data *data, char *exp);
+void    no_builtin(t_data *data, char **env);
 
 #endif

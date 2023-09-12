@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:52:30 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/04 11:43:08 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/12 14:44:39 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	execute_cmd(t_data *data, char **env)
 		i++;
 	}*/
 	if (!is_builtin(data, env))
+	{
+		no_builtins(data, env);
 		return ; //mettre ici la fonction pour les non-builtins.
+	}
 }
 
 void	begin_cmd(t_data *data, char **env)

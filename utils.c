@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 15:42:21 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/01 10:14:34 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/12 10:53:25 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ void	ft_free_split(char **tab)
 
 	//printf("\n\n\n\n\nqvqnt whilllllllllllllllllllll\n");
 	i = 0;
-	printf("\n\n\ndebut check\n");
-	check_tab(tab);
-	printf("\n\n\ndebut free\n");
+	//printf("\n\n\ndebut check\n");
+	//check_tab(tab);
+	//printf("\n\n\ndebut free\n");
 	while (tab[i])
 	{
 	//	printf("free i=%d\n", i);
-		printf("free i=%d : %s\n", i, tab[i]);
+		//printf("free i=%d : %s\n", i, tab[i]);
 		free(tab[i]);
-		printf("ok\n");
+		//printf("ok\n");
 		i++;
 	}
 	//printf("apres whilllllllllllllllllllll\n\n\n\n\n");

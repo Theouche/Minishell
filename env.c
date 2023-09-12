@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:00:55 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/04 11:13:01 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/12 10:51:55 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	apply_env(t_data *data, char **env)
 
 	i = -1;
 	while (data->cpyenv[++i])
-		ft_printf("%d ---- %s\n", i, data->cpyenv[i]);
+	{
+		//ft_printf("%d ---- %s\n", i, data->cpyenv[i]);
+		ft_printf("%s\n", data->cpyenv[i]);
+	}
 	//ft_printf("%s\n", getcwd(NULL, 0));
 	return (3);
 }

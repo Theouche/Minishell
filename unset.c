@@ -38,7 +38,7 @@ void	do_unset_find(t_data *data, char *unset)
     }
     envcpy_2[i] = 0;
     //printf(" copie realise de %d elements\n", i);
-    ft_free_split(data->cpyenv);
+    //ft_free_split(data->cpyenv);
     //printf("c'est ce free qui deconne ?\n");
     data->cpyenv = malloc(sizeof(char *) * (i + 1));
     //printf("malloc fait\n");
@@ -50,7 +50,7 @@ void	do_unset_find(t_data *data, char *unset)
     }
     data->cpyenv[i] = 0;
     //printf(" copie realise de %d elements\n", i);
-    ft_free_split(envcpy_2);
+    //ft_free_split(envcpy_2);
     //printf(" copie realise de %d elements\n", i);
     return ;
 }

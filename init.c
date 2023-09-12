@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:26:40 by tlorne            #+#    #+#             */
-/*   Updated: 2023/08/05 15:21:05 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/12 12:47:46 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,24 @@ void	ft_getenv(t_data *data, char **env)
 void	ft_getpath(t_data *data)
 {
 	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	while (strncmp(data->cpyenv[i], "PATH", 4) != 0)
 		i++;
-	data->path = ft_strdup(data->cpyenv[i]);
+	//data->path = ft_strdup(data->cpyenv[i]);
+	data->path = malloc(sizeof(char) * (ft_strlen(data->cpyenv[i]) + 1));
+	k = 0;
+	j = 5;
+	while (data->cpyenv[i][j])
+	{
+		data->path[k] = data->cpyenv[i][j];
+		k++;
+		j++;
+	}
+	data->path[k] = 0;
+	//printf("Path vaut : %s\n", data->path);
 }
 
 void	ft_gethome(t_data *data)

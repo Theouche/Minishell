@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:15:22 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/12 14:46:20 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:44:48 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,22 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
+# include <signal.h>
 
 # define NAME "\033[1;36m🐚  Minishell "
 # define VIOLET "\033[1;35m"
 # define BLACK "\033[1;30m"
 # define WHITE "\033[1;37m"
 
-/*typedef struct s_list
-{
-	char			*cmd;
-	int				pipe;
-	int				redir;
-//	char			*file_out;
-//	char			*file_in;
-//	char			*type_in;
-//	char			*type_out;
-	struct s_list *next;
-}	t_list;*/
+/*
+ struct sigaction {
+    void     (*sa_handler) (int);
+    void     (*sa_sigaction) (int, siginfo_t *, void *);
+    sigset_t   sa_mask;
+    int        sa_flags;
+    void     (*sa_restorer) (void);
+};
+*/
 
 typedef	struct s_data
 {
@@ -45,6 +44,8 @@ typedef	struct s_data
 	char		**fsplit;
 	char		**cmd;
 	int	num_pip;
+	int	redir;
+	int	status;
 }	t_data;
 
 void    ft_init(t_data *data, char **env);

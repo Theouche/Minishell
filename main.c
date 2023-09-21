@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:16:23 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/02 09:50:43 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:47:01 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	main(int argc, char **argv, char **env)
 		//ft_printf("le prompte est : %s\n", prompt);
 		//check_prompt(prompt);   A faire !!!!!!
 		add_history(prompt);
+		data.redir = 0;
 		// le meilleur jusqu'ici ---------> ft_parse(prompt, &lst_cmd);
 		if (prompt[0])
 		{
@@ -92,12 +93,8 @@ int	main(int argc, char **argv, char **env)
 				break ;
 			}
 			begin_cmd(data, env);
-			//print_cmd(lst_cmd);
 		}
 		//execute_cmd(lst_cmd, env);
 	}
-	//tools.envp = ft_envdup(envp);
-	//get_pwd(&tools);
-	//init_tools(&tools);
-	//minishell_loop(&tools);
+	//free tout ce aui doit etre free dans data
 }

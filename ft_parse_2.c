@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 13:33:06 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/02 10:53:47 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/21 14:26:36 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,26 @@ void	get_num_pipe(t_data *data)
 
 int	get_cmd(t_data *data, int i)
 {
-	char	**tmp;
+	char	*tmp;
 
-	tmp = ft_split(data->fsplit[i], ' ');
-	printf("ok\n");
-	if (tmp[0])
-		data->cmd[i] = ft_strdup(tmp[0]);
+	//tmp = ft_split(data->fsplit[i], ' ');
+	//printf("ok\n");
+	//faire un remove space ? et tout copier dans cmd ?
+	printf("fsplit vaut :%s\n", data->fsplit[i]);
+	tmp = ft_remove_first_space(data->fsplit[i]);
+	//old version
+	printf("tmp vaut :%s\n", tmp);
+	if (tmp)
+		data->cmd[i] = ft_strdup(tmp);
 	else
 	{
-		ft_free_split(tmp);
+		//free(tmp);
 		ft_free_split(data->fsplit);
 		ft_free_split(data->cmd);
 		return (0);
 	}
-	ft_free_split(tmp);
+	printf("%s\n", data->cmd[i]);
+	//free(tmp);
 	return (1);
 }
 
@@ -140,9 +146,11 @@ void	ft_check_and_parse(t_data *data, char *prompt)
 	data->cmd[data->num_pip + 1] = 0;
 	while (data->fsplit[i])
 	{
-		//printf("ok\n");
+		printf("ok %d\n", i);
 		if (!get_cmd(data, i))
 			return ;
 		i++;
 	}
+	//begin_cmd(data, env);
+	//printf("fin ?\n");
 }

@@ -49,13 +49,12 @@ void	change_pwd_env(t_data *data, char *old_pwd)
 	data->cpyenv[j] = ft_strdup(old_pwd);
 }
 
-int	apply_cd(t_data *data, char **env)
+int	apply_cd(t_data *data, char **dir)
 {
-	char	**dir;
+	//char	**dir;
 	char	*old_pwd;
 
-	(void)env;
-	dir = ft_split(data->fsplit[0], ' ');
+	//dir = ft_split(data->fsplit[0], ' ');
 	old_pwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));;
 	if (!dir[1] || (dir[1][0] == '~' && dir[1][1] == '\0'))
 		chdir(data->home);
@@ -64,6 +63,6 @@ int	apply_cd(t_data *data, char **env)
 	else if (chdir(dir[1]) == -1)
 		ft_printf("cd: no such file or directory: %s\n", dir[1]);
 	change_pwd_env(data, old_pwd);
-	ft_free_split(dir);
+	//ft_free_split(dir);
 	return (3);
 }

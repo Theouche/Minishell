@@ -102,15 +102,15 @@ char    *remove_quote(char *cmd)
     return (wq);
 }
 
-int	apply_export(t_data *data)
+int	apply_export(t_data *data, char **cmd)
 {
     int     i;
-    char    **cmd;
+    //char    **cmd;
     char    **clean_cmd;
 
     //printf("begin export \n\n");
     i = 0;
-    cmd = ft_split(data->fsplit[0], ' ');
+    //cmd = ft_split(data->fsplit[0], ' ');
     while (cmd[i])
         i++;
     //printf("split fait \n\n");

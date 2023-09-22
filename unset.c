@@ -110,14 +110,14 @@ void    ft_unset(t_data *data, char **unset)
     }
 }
 
-int apply_unset(t_data *data)
+int apply_unset(t_data *data, char **cmd)
 {
     int     i;
-    char    **cmd;
+    //char    **cmd;
     char    **clean_cmd;
 
     i = 0;
-    cmd = ft_split(data->fsplit[0], ' ');
+    //cmd = ft_split(data->fsplit[0], ' ');
     while (cmd[i])
         i++;
     clean_cmd = malloc(sizeof(char *) * i + 1);

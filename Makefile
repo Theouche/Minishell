@@ -6,7 +6,7 @@
 #    By: tlorne <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 15:46:06 by tlorne            #+#    #+#              #
-#    Updated: 2023/09/12 14:57:52 by tlorne           ###   ########.fr        #
+#    Updated: 2023/09/21 11:36:11 by tlorne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = minishell
 
-SRC = main.c init.c execute.c echo.c pwd.c env.c ft_parse_2.c utils.c cd.c export.c export2.c unset.c no_builtins.c
+SRC = main.c init.c execute.c echo.c pwd.c env.c ft_parse_2.c utils.c cd.c export.c export2.c unset.c
 
 OBJ = ${SRC:.c=.o}
 

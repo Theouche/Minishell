@@ -85,15 +85,15 @@ int	is_quote_echo(char *cmd)
 	return (0);
 }
 
-int	apply_echo(t_data *data)
+int	apply_echo(char *cmd)
 {
 	int	i;
 	int	arg;
-	char	*cmd;
+	//char	*cmd;
 
 	i = 4;
 	arg = 0;
-	cmd = data->fsplit[0];
+	//cmd = data->fsplit[0];
 	ft_printf("debut fonction echo \n");
 	if (is_quote_echo(cmd))
 	{

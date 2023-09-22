@@ -12,11 +12,10 @@
 
 #include "minishell.h"
 
-int	apply_env(t_data *data, char **env)
+int	apply_env(t_data *data)
 {
 	int	i;
 	//(void)data;
-	(void)env;
 
 	i = -1;
 	while (data->cpyenv[++i])

@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:15:22 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/21 10:44:48 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/22 11:00:14 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,25 @@ void    ft_parse(char *prompt, t_list **lst_cmd);
 void	ft_echo(char *word_to_print);
 //void    print_cmd(char **list_cmd);
 void    print_cmd(t_list *lst_cmd);
-void    execute_cmd(t_data *data, char **env);
-int     apply_echo(t_data *data);
+//void    execute_cmd(t_data *data, char **env);
+int     apply_echo(char *cmd);
 int		is_quote(char *cmd);
 char    *remove_quote(char *cmd);
-int     apply_pwd(t_data *data, char **env);
+int     apply_pwd(t_data *data);
 char	*ft_strndup_ms(char *src, int n);
 size_t	ft_count_word_ms(char *src, char c);
 void	ft_check_and_parse(t_data *data, char *prompt);
 void	ft_free_split(char **tab);
-void	begin_cmd(t_data *data, char **env);
+void	begin_cmd(t_data *data);
 char    *first_word(char *cmd);
 int     ft_strcmp(char *s1, char *s2);
 void    check_tab(char **tab);
-int     apply_env(t_data *data, char **env);
+int     apply_env(t_data *data);
 int     apply_cd(t_data *data, char **env);
-int		apply_export(t_data *data);
-int 	apply_unset(t_data *data);
+int		apply_export(t_data *data, char **cmd);
+int 	apply_unset(t_data *data, char **cmd);
 void	do_export_no_name(t_data *data, char *exp);
 void    no_builtin(t_data *data, char **env);
+char    *ft_remove_first_space(char *cmd);
 
 #endif

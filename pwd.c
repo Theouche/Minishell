@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int     apply_pwd(t_data *data, char **env)
+int     apply_pwd(t_data *data)
 {
 	//int	i;
 	int	j;
@@ -20,7 +20,6 @@ int     apply_pwd(t_data *data, char **env)
 
 
 	(void)data;
-	(void)env;
 	//i = 0;
 	//while (strncmp(env[i], "PWD", 3) != 0)
 	//	i++;

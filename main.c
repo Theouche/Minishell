@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:16:23 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/21 10:47:01 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/22 10:50:54 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,26 @@ int	main(int argc, char **argv, char **env)
 	//lst_cmd = malloc(sizeof(t_list) * 1);
 	ft_init(data, env);
 
-	add_history("unset USER");
-	add_history("export salut=ok bien=ok cool=ok");
+	//add_history("unset USER");
 	while (42)
 	{
 		prompt = ft_readline();
 		//ft_printf("le prompte est : %s\n", prompt);
 		//check_prompt(prompt);   A faire !!!!!!
 		add_history(prompt);
-		data.redir = 0;
-		// le meilleur jusqu'ici ---------> ft_parse(prompt, &lst_cmd);
+		data->redir = 0;
 		if (prompt[0])
 		{
 			ft_check_and_parse(data, prompt);
-			printf("les commandes sont :\n");
-			check_tab(data->cmd);
-			printf("\n\n");
-			if (ft_strcmp(data->cmd[0], "exit") == 0)
+			printf("les commandes sont :\n"); //plus utile ?
+			check_tab(data->cmd); // plus utile ?
+			printf("\n\n"); // plus utile ?
+			if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
 			{
 				// faudra probablement free des trucs !!
 				break ;
 			}
-			begin_cmd(data, env);
+			begin_cmd(data); // plus utile ?
 		}
 		//execute_cmd(lst_cmd, env);
 	}

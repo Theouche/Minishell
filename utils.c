@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 15:42:21 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/12 10:53:25 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/21 13:42:00 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,22 @@ int	ft_strcmp(char *s1, char *s2)
 			return (s1[i] - s2[i]);
 	}
 	return (s1[i] - s2[i]);
+}
+
+char	*ft_remove_first_space(char *cmd)
+{
+	char	*dup;
+	int	i;
+	int	deb;
+
+	i = 0;
+	deb = 0;
+	while (cmd[i] == ' ' || cmd[i] == '\t')
+		i++;
+	dup = malloc(ft_strlen(cmd) - i + 1 * sizeof(char));
+	while (cmd[i])
+		dup[deb++] = cmd[i++];
+	dup[deb] = 0;
+	//free(cmd);
+	return (dup);
 }

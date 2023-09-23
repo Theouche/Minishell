@@ -69,15 +69,16 @@ void	begin_cmd(t_data *data)
 	i = 0;
 	while (data->cmd[i])
 	{
-		/*if (ft_strchr_dbred(data->cmd[i], '>') == 1)
+		printf("la recherche vaut %d \n",ft_strchr_dbred(data->cmd[i], '>'));
+		if (ft_strchr_dbred(data->cmd[i], '>') == 1)
 			ft_redir_double_droite(data, data->cmd[i]);
-		else if (ft_strchr_dbred(data->cmd[i], '<') == 1)
+		/*else if (ft_strchr_dbred(data->cmd[i], '<') == 1)
 			ft_redir_double_gauche(data, data->cmd[i]);
 		else if (ft_strchr_red(data->cmd[i], '>') == 1)
 			ft_redir_droite(data, data->cmd[i]);
 		else if (ft_strchr_red(data->cmd[i], '<') == 1)
-			ft_redir_gauche(data, data->cmd[i]);
-		else*/
+			ft_redir_gauche(data, data->cmd[i]);*/
+		else
 			execute_cmd(data, data->cmd[i]);
 		i++;
 	}	

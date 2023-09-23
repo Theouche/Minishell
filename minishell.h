@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:15:22 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/22 11:00:14 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/09/22 15:48:56 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # define NAME "\033[1;36m🐚  Minishell "
 # define VIOLET "\033[1;35m"
@@ -74,5 +77,11 @@ int 	apply_unset(t_data *data, char **cmd);
 void	do_export_no_name(t_data *data, char *exp);
 void    no_builtin(t_data *data, char **env);
 char    *ft_remove_first_space(char *cmd);
+int     ft_strchr_red(char *cmd, char chev);
+int     ft_strchr_dbred(char *cmd, char chev);
+void    ft_redir_double_droite(t_data *data, char *cmd);
+char	*ft_strjoin_and_free(char *s1, char *s2);
+char	*add_space(char *cmd);
+
 
 #endif

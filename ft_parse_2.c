@@ -126,7 +126,7 @@ int	get_cmd(t_data *data, int i)
 	return (1);
 }
 
-void	ft_check_and_parse(t_data *data, char *prompt)
+int	ft_check_and_parse(t_data *data, char *prompt)
 {
 	int	i;
 
@@ -135,7 +135,7 @@ void	ft_check_and_parse(t_data *data, char *prompt)
 	if (!check_quote(prompt))
 	{
 		ft_printf("au moins une quote n'est pas ferme\n");
-		return ;
+		return (0) ;
 	}
 	data->fsplit = first_split(prompt, '|');
 	printf("les differentes parties du prompt sont : \n");
@@ -148,9 +148,10 @@ void	ft_check_and_parse(t_data *data, char *prompt)
 	{
 		printf("ok %d\n", i);
 		if (!get_cmd(data, i))
-			return ;
+			return (0) ;
 		i++;
 	}
+	return (1);
 	//begin_cmd(data, env);
 	//printf("fin ?\n");
 }

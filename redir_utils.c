@@ -99,9 +99,11 @@ int	ft_strchr_red(char *cmd, char chev)
 	while (cmd[i])
 	{
 		if (cmd[i] == 34 || cmd[i] == 39)
-			q = cmd[i];
-		while (cmd[i] != q)
-			 i++;
+		{
+			q = cmd[i++];
+			while (cmd[i] != q)
+				 i++;
+		}
 		if (cmd[i])
 		{
 			if (cmd[i] == chev)

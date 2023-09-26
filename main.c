@@ -81,18 +81,20 @@ int	main(int argc, char **argv, char **env)
 		data->redir = 0;
 		if (prompt[0])
 		{
-			ft_check_and_parse(data, prompt);
-			printf("les commandes sont :\n"); //plus utile ?
-			check_tab(data->cmd); // plus utile ?
-			printf("\n\n"); // plus utile ?
-			if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
+			if (ft_check_and_parse(data, prompt) == 1)
 			{
-				// faudra probablement free des trucs !!
-				break ;
+				printf("les commandes sont :\n"); //plus utile ?
+				check_tab(data->cmd); // plus utile ?
+				printf("\n\n"); // plus utile ?
+				if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
+				{
+					// faudra probablement free des trucs !!
+					break ;
+				}
+				begin_cmd(data);
 			}
-			begin_cmd(data); // plus utile ?
 		}
 		//execute_cmd(lst_cmd, env);
 	}
-	//free tout ce aui doit etre free dans data
+	//ajouter fct pour free la structure !
 }

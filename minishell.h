@@ -52,7 +52,7 @@ typedef	struct s_data
 }	t_data;
 
 void    ft_init(t_data *data, char **env);
-void    ft_parse(char *prompt, t_list **lst_cmd);
+//void    ft_parse(char *prompt, t_list **lst_cmd);
 //char	**ft_parse(char *prompt);
 void	ft_echo(char *word_to_print);
 //void    print_cmd(char **list_cmd);
@@ -64,7 +64,7 @@ char    *remove_quote(char *cmd);
 int     apply_pwd(t_data *data);
 char	*ft_strndup_ms(char *src, int n);
 size_t	ft_count_word_ms(char *src, char c);
-void	ft_check_and_parse(t_data *data, char *prompt);
+int		ft_check_and_parse(t_data *data, char *prompt);
 void	ft_free_split(char **tab);
 void	begin_cmd(t_data *data);
 char    *first_word(char *cmd);
@@ -82,6 +82,12 @@ int     ft_strchr_dbred(char *cmd, char chev);
 void    ft_redir_double_droite(t_data *data, char *cmd);
 char	*ft_strjoin_and_free(char *s1, char *s2);
 char	*add_space(char *cmd);
+void	ft_redir_droite(t_data *data, char *cmd);
+void	ft_init_bis(t_data *data, t_data *bis, char *new_cmd);
+void	ft_redir_gauche(t_data *data, char *cmd);
+void	ft_redir_double_gauche(t_data *data, char *cmd);
+char	*ft_strjoin_and_free1(char *s1, char *s2);
+char	*ft_strjoin_and_free2(char *s1, char *s2);
 
 
 #endif

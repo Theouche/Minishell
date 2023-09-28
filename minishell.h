@@ -46,6 +46,7 @@ typedef	struct s_data
 	char		*home;
 	char		**fsplit;
 	char		**cmd;
+	char		*prompt;
 	int	num_pip;
 	int	redir;
 	int	status;
@@ -87,7 +88,8 @@ void	ft_init_bis(t_data *data, t_data *bis, char *new_cmd);
 void	ft_redir_gauche(t_data *data, char *cmd);
 void	ft_redir_double_gauche(t_data *data, char *cmd);
 char	*ft_strjoin_and_free1(char *s1, char *s2);
-char	*ft_strjoin_and_free2(char *s1, char *s2);
+char	*handle_dollar(char *prompt);
+//char	*ft_strjoin_and_free2(char *s1, char *s2);
 
 
 #endif

@@ -137,6 +137,7 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 		ft_printf("au moins une quote n'est pas ferme\n");
 		return (0) ;
 	}
+	//data->prompt = hanlde_dollar(prompt);
 	data->fsplit = first_split(prompt, '|');
 	printf("les differentes parties du prompt sont : \n");
 	check_tab(data->fsplit);

@@ -88,8 +88,9 @@ void	ft_init_bis(t_data *data, t_data *bis, char *new_cmd);
 void	ft_redir_gauche(t_data *data, char *cmd);
 void	ft_redir_double_gauche(t_data *data, char *cmd);
 char	*ft_strjoin_and_free1(char *s1, char *s2);
-char	*handle_dollar(char *prompt);
-//char	*ft_strjoin_and_free2(char *s1, char *s2);
-
+char	*handle_dollar(t_data *data, char *prompt);
+char	*ft_strjoin_and_free2(char *s1, char *s2);
+int 	len_tab(char **tab);
+char    *char_vide(void);
 
 #endif

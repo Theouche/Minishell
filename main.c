@@ -71,7 +71,7 @@ int	main(int argc, char **argv, char **env)
 	//lst_cmd = malloc(sizeof(t_list) * 1);
 	ft_init(data, env);
 
-	//add_history("unset USER");
+	add_history("echo $USER");
 	while (42)
 	{
 		prompt = ft_readline();

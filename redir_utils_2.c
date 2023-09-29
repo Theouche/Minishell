@@ -41,7 +41,7 @@ char	*ft_strjoin_and_free1(char *s1, char *s2)
 	return (str);
 }
 
-/*char	*ft_strjoin_and_free2(char *s1, char *s2)
+char	*ft_strjoin_and_free2(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -65,7 +65,7 @@ char	*ft_strjoin_and_free1(char *s1, char *s2)
 		j++;
 	}
 	free(s1);
-	free(s2);
+	//free(s2);
 	str[i + j] = 0;
 	return (str);
-}*/
+}

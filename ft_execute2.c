@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipe.c                                          :+:      :+:    :+:   */
+/*   ft_execute2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leudelin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:45:59 by leudelin          #+#    #+#             */
-/*   Updated: 2023/09/12 10:46:04 by leudelin         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:28:15 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ char	*recupthepath(t_data *data, char *cmd)
 
 	i = 0;
 	j = 0;
+	if (cmd[0] == '/')
+	{
+		if (access(cmd, X_OK) == 0)
+			return (cmd);
+		else
+			return (NULL);
+	}
 	while (data->cpyenv[i])
 	{
 		if (ft_strncmp(data->cpyenv[i], "PATH", 4) == 0)

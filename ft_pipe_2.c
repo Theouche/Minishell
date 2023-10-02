@@ -12,23 +12,28 @@
 
 #include "minishell.h"
 
-int		checkcmdpipe(int input_fd, int output_fd, char **cmd, t_data *data)
+int		new_std_outin(int output_fd, int input_fd, char **cmd, t_data *data)
 {
-	pid_t	pid;
-	int		status;
-	
-	pid = fork();
-	if (pid == 0)
-		new_std_outin(output_fd, input_fd, cmd, data);
-	if (pid > 0)
+	char	*path;
+
+	if (input_fd != STDIN_FILENO) //oldfd devient newfd = duplication de STDIN_FILENO pour le fd de la pipe (donc input_fd deviens STDIN)
 	{
-		waitpid(pid, &status, 0);
-		return (0);
+		dup2(input_fd, STDIN_FILENO);
+		close(input_fd);
+	}
+	if (output_fd != STDOUT_FILENO) //same mais avec output
+	{
+		dup2(output_fd, STDOUT_FILENO);
+		close(output_fd);
+	}
+	path = recupthepath(data, cmd[0]);
+	cmd[0] = recupthepath(data, cmd[0]);
+	if (cmd[0])
+	{
+		execve(path, cmd, data->cpyenv);
+		perror("execve");
 	}
 	else
-	{
-		perror("fork");
-		exit (1);
-	}
+		perror("command not found");
 	return (0);
 }

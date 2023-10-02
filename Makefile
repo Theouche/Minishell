@@ -18,7 +18,8 @@ SRC = main.c init.c execute.c ft_parse_2.c handle_dollar.c ft_execute2.c \
 		echo.c pwd.c env.c cd.c export.c export2.c unset.c \
 		redir_db_droite.c redir_droite.c redir_gauche.c redir_db_gauche.c \
 		utils.c redir_utils.c redir_utils_2.c handle_utils.c \
-		signal.c
+		signal.c \
+		ft_pipe.c ft_pipe_2.c
 
 OBJ = ${SRC:.c=.o}
 

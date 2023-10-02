@@ -39,6 +39,7 @@ int	is_builtin(t_data *data, char *cmd)
 
 void	execute_cmd(t_data *data, char *cmd)
 {
+	char	**split;
 	/*int	i;
 
 	i = 0;
@@ -50,7 +51,9 @@ void	execute_cmd(t_data *data, char *cmd)
 	}*/
 	if (!is_builtin(data, cmd))
 	{
-		//no_builtins(data, env);
+		split = ft_split(cmd, ' ');
+		checkcmd(split, data);
+		//ft_free_split(split);
 		return ; //mettre ici la fonction pour les non-builtins.
 	}
 }

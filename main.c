@@ -70,8 +70,8 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data) * 1);
 	//lst_cmd = malloc(sizeof(t_list) * 1);
 	ft_init(data, env);
-
-	add_history("echo $USER");
+	//add_history("echo $USER");
+	set_signal();
 	while (42)
 	{
 		prompt = ft_readline();

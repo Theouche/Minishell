@@ -21,6 +21,7 @@
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+#include <sys/wait.h>
 # include <fcntl.h>
 
 # define NAME "\033[1;36m🐚  Minishell "
@@ -92,5 +93,7 @@ char	*handle_dollar(t_data *data, char *prompt);
 char	*ft_strjoin_and_free2(char *s1, char *s2);
 int 	len_tab(char **tab);
 char    *char_vide(void);
+void	set_signal(void);
+void	checkcmd(char **cmd, t_data *data);
 
 #endif

@@ -95,5 +95,6 @@ int 	len_tab(char **tab);
 char    *char_vide(void);
 void	set_signal(void);
 void	checkcmd(char **cmd, t_data *data);
+int		forpipe(char **cmd, t_data *data);
 
 #endif

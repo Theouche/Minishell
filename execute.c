@@ -82,7 +82,11 @@ void	begin_cmd(t_data *data)
 		else if (ft_strchr_red(data->cmd[i], '<') == 1)
 			ft_redir_gauche(data, data->cmd[i]);
 		else
+		{
+			if (i == 0 && data->num_pip >=1 )
+				forpipe(data->cmd, data);
 			execute_cmd(data, data->cmd[i]);
+		}
 		i++;
 		printf("ok pour commande %d\n", i -1);
 	}	

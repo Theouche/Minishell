@@ -121,7 +121,7 @@ int	get_cmd(t_data *data, int i)
 		ft_free_split(data->cmd);
 		return (0);
 	}
-	printf("%s\n", data->cmd[i]);
+	//printf("%s\n", data->cmd[i]);
 	//free(tmp);
 	return (1);
 }

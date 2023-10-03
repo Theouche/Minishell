@@ -17,7 +17,7 @@ int	is_builtin(t_data *data, char *cmd)
 	char	**split;
 
 	split = ft_split(cmd, ' ');
-	printf("la commamde est : %s\n", split[0]);
+	//printf("la commamde est : %s\n", split[0]);
 	if (ft_strcmp(split[0], "echo") == 0)
 		return (apply_echo(cmd));
 	else if (ft_strcmp(split[0], "cd") == 0)

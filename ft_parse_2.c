@@ -140,8 +140,8 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 	data->prompt = handle_dollar(data, prompt);
 	printf("##### data->prompt vaut : %s\n\n", data->prompt);
 	data->fsplit = first_split(data->prompt, '|');
-	printf("les differentes parties du prompt sont : \n");
-	check_tab(data->fsplit);
+	//printf("les differentes parties du prompt sont : \n");
+	//check_tab(data->fsplit);
 	printf("\n\n");
 	get_num_pipe(data);
 	data->cmd = malloc(sizeof(char *) * (data->num_pip) + 2);
@@ -153,6 +153,8 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 			return (0) ;
 		i++;
 	}
+	printf("les differentes commandes sont : \n");
+	check_tab(data->cmd);
 	return (1);
 	//begin_cmd(data, env);
 	//printf("fin ?\n");

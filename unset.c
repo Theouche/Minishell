@@ -61,16 +61,16 @@ void    do_unset(t_data *data, char *unset)
     int len;
 
     len = ft_strlen(unset);
-    printf("verif, unset est : %s, sa longueur vaut %d\n", unset, len);
+    //printf("verif, unset est : %s, sa longueur vaut %d\n", unset, len);
     i = 0;
     while (data->cpyenv[i])
     {
         //printf("ok\n");
         if (ft_strncmp(data->cpyenv[i], unset, len) == 0)
         {
-            printf("ok_3\n");
+            //printf("ok_3\n");
             do_unset_find(data, unset);
-            printf("ok_4\n");
+            //printf("ok_4\n");
             return ;
         }
         i++;
@@ -127,9 +127,9 @@ int apply_unset(t_data *data, char **cmd)
     {
         if (is_quote(cmd[i]) == 1)
         {
-            printf("with quote %d\n\n", is_quote(cmd[i]));
+            //printf("with quote %d\n\n", is_quote(cmd[i]));
             clean_cmd[i] = remove_quote(cmd[i]);
-            printf("c'est remove quote qui deconne ? %s\n\n", clean_cmd[i]);
+            //printf("c'est remove quote qui deconne ? %s\n\n", clean_cmd[i]);
         }
         else
             clean_cmd[i] = ft_strdup(cmd[i]);

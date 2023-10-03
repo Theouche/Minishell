@@ -43,7 +43,7 @@ char    *ft_get_env(t_data *data, char *sch)
     //printf("###########################len tab vaut %d\n", len_tab(data->cpyenv));
     while (i < len_tab(data->cpyenv) && ft_strncmp(data->cpyenv[i], sch, ft_strlen(sch)) != 0)
     {
-        printf("i vaut %d\n", i);
+        //printf("i vaut %d\n", i);
         i++;
     }
     // si j'arrive au bout de data ?.

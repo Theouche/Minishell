@@ -29,15 +29,13 @@
 # define BLACK "\033[1;30m"
 # define WHITE "\033[1;37m"
 
-/*
- struct sigaction {
+/*struct sigaction {
     void     (*sa_handler) (int);
     void     (*sa_sigaction) (int, siginfo_t *, void *);
     sigset_t   sa_mask;
     int        sa_flags;
     void     (*sa_restorer) (void);
-};
-*/
+};*/
 
 typedef	struct s_data
 {
@@ -68,7 +66,7 @@ char	*ft_strndup_ms(char *src, int n);
 size_t	ft_count_word_ms(char *src, char c);
 int		ft_check_and_parse(t_data *data, char *prompt);
 void	ft_free_split(char **tab);
-void	begin_cmd(t_data *data);
+void	begin_cmd(t_data *data, char *cmd);
 char    *first_word(char *cmd);
 int     ft_strcmp(char *s1, char *s2);
 void    check_tab(char **tab);
@@ -96,7 +94,7 @@ char    *char_vide(void);
 void	set_signal(void);
 void	checkcmd(char **cmd, t_data *data);
 int		forpipe(char **cmd, t_data *data);
-int		new_std_outin(int output_fd, int input_fd, char **cmd, t_data *data);
+int		new_std_outin(int output_fd, int input_fd, char *cmd, t_data *data);
 char	*recupthepath(t_data *data, char *cmd);
 
 #endif

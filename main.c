@@ -91,7 +91,10 @@ int	main(int argc, char **argv, char **env)
 					// faudra probablement free des trucs !!
 					break ;
 				}
-				begin_cmd(data);
+				if (data->num_pip >= 1)
+					forpipe(data->cmd, data);
+				else
+					begin_cmd(data, data->cmd[0]);
 			}
 		}
 		//execute_cmd(lst_cmd, env);

@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-int		new_std_outin(int output_fd, int input_fd, char **cmd, t_data *data)
+int		new_std_outin(int output_fd, int input_fd, char *cmd, t_data *data)
 {
-	char	*path;
+	//char	*path;
 
 	if (input_fd != STDIN_FILENO) //oldfd devient newfd = duplication de STDIN_FILENO pour le fd de la pipe (donc input_fd deviens STDIN)
 	{
@@ -26,7 +26,8 @@ int		new_std_outin(int output_fd, int input_fd, char **cmd, t_data *data)
 		dup2(output_fd, STDOUT_FILENO);
 		close(output_fd);
 	}
-	path = recupthepath(data, cmd[0]);
+	begin_cmd(data, cmd);
+	/*path = recupthepath(data, cmd[0]);
 	cmd[0] = recupthepath(data, cmd[0]);
 	if (cmd[0])
 	{
@@ -34,6 +35,6 @@ int		new_std_outin(int output_fd, int input_fd, char **cmd, t_data *data)
 		perror("execve");
 	}
 	else
-		perror("command not found");
+		perror("command not found");*/
 	return (0);
 }

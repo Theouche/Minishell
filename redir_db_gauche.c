@@ -44,7 +44,7 @@ void    do_until_delim(t_data *data, char *comm, char *delim)
             printf("#########final cmd vaut %s\n", finalcmd);
             ft_init_bis(data, redir, finalcmd);
             printf("#########fin init donc deb exec com\n");
-		    begin_cmd(redir);
+		    begin_cmd(redir, finalcmd);
             printf("####fin begin cmd\n");
             unlink("temp.txt");
             free(line);

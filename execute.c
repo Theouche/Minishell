@@ -58,7 +58,7 @@ void	execute_cmd(t_data *data, char *cmd)
 	}
 }
 
-void	begin_cmd(t_data *data)
+void	begin_cmd(t_data *data, char *cmd)
 {
 	/*if (data->num_pip == 0)
 		execute_cmd(data, env);
@@ -67,7 +67,7 @@ void	begin_cmd(t_data *data)
 		// pour si il y a des pipes !.
 		return ;
 	}*/
-	int	i;
+	/*int	i;
 
 	i = 0;
 	while (data->cmd[i])
@@ -89,5 +89,15 @@ void	begin_cmd(t_data *data)
 		}
 		i++;
 		printf("ok pour commande %d\n", i -1);
-	}	
+	}*/
+	if (ft_strchr_dbred(cmd, '>') == 1)
+		ft_redir_double_droite(data, cmd);
+	else if (ft_strchr_dbred(cmd, '<') == 1)
+		ft_redir_double_gauche(data, cmd);
+	else if (ft_strchr_red(cmd, '>') == 1)
+		ft_redir_droite(data, cmd);
+	else if (ft_strchr_red(cmd, '<') == 1)
+		ft_redir_gauche(data, cmd);
+	else
+		execute_cmd(data, cmd);
 }

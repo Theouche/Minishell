@@ -47,7 +47,7 @@ void	clean_and_resend(t_data *data, char **split)
 	if (new_cmd)
 	{
 		ft_init_bis(data, redir, new_cmd);
-		begin_cmd(redir);
+		begin_cmd(redir, new_cmd);
 		//ajouter fct pour free la structure !
 	}
 }

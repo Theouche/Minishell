@@ -31,7 +31,7 @@ void	free_cmd(char ***cmd, int num_cmd)
 	}
 }
 
-int		checkcmdpipe(int input_fd, int output_fd, char **cmd, t_data *data)
+int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
 {
 	pid_t	pid;
 	int		status;
@@ -52,11 +52,12 @@ int		checkcmdpipe(int input_fd, int output_fd, char **cmd, t_data *data)
 	return (0);
 }
 
-int		ft_pipe1(int num_cmd, int **pipefd, char ***cmd, t_data *data)
+int		ft_pipe1(int num_cmd, int **pipefd, char ***cmds, t_data *data)
 {
 	int		input_fd;
 	int		output_fd;
 	int		i;
+	(void)cmds;
 
 	i = 0;
 	input_fd = STDIN_FILENO;
@@ -66,7 +67,7 @@ int		ft_pipe1(int num_cmd, int **pipefd, char ***cmd, t_data *data)
 			output_fd = STDOUT_FILENO;
 		else
 			output_fd = pipefd[i][1]; //sinon on redirige vers le stdout de la pipe
-		checkcmdpipe(input_fd, output_fd,  cmd[i], data);
+		checkcmdpipe(input_fd, output_fd,  data->cmd[i], data);
 		if (i > 0) //si c'est ni la 1ere ni la derniere on ferme le pipedfd precedent car pu besoin
 			close(pipefd[i - 1][0]); //- 1 du coup car par rapport a l'index tt est decaler tmtc
 		if (i < num_cmd - 1) //si c'est pas la derniere on redirige vers le pipefd de lecture
@@ -79,7 +80,7 @@ int		ft_pipe1(int num_cmd, int **pipefd, char ***cmd, t_data *data)
 	return (0);
 }
 
-int		ft_pipe(char ***cmd, int num_cmd, t_data *data)
+int		ft_pipe(char ***cmds, int num_cmd, t_data *data)
 {
 	int		**pipefd;
 	int		i;
@@ -96,7 +97,7 @@ int		ft_pipe(char ***cmd, int num_cmd, t_data *data)
 		}
 		i++;
 	}
-	ft_pipe1(num_cmd, pipefd, cmd, data);
+	ft_pipe1(num_cmd, pipefd, cmds, data);
 	/*i = 0;
 	while (i < num_cmd - 1)
 	{

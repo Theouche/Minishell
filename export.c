@@ -23,7 +23,7 @@ void    do_export(t_data *data, char *exp)
         i++;
     len = i;
     name = ft_strndup_ms(exp, len);
-    printf("verif, name est : %s\n", name);
+   // printf("verif, name est : %s\n", name);
     i = 0;
     while (data->cpyenv[i])
     {
@@ -35,7 +35,7 @@ void    do_export(t_data *data, char *exp)
         }
         i++;
     }
-    printf("ok\n");
+    //printf("ok\n");
     do_export_no_name(data, exp);
     return ;
 }

@@ -43,7 +43,7 @@ void	clean_and_resend(t_data *data, char **split)
 		}
 		i++;
 	}
-	printf("##### la nouvelle commande est : %s\n", new_cmd);
+	//printf("##### la nouvelle commande est : %s\n", new_cmd);
 	if (new_cmd)
 	{
 		ft_init_bis(data, redir, new_cmd);

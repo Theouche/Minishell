@@ -24,7 +24,7 @@ char    *add_char(char *str, char c)
         new_str[i] = str[i];
         i++;
     }
-    printf("####### new_str vaut : %s\n\n", new_str);
+    //printf("####### new_str vaut : %s\n\n", new_str);
     new_str[i++] = c;
     new_str[i] = 0;
     free(str);
@@ -39,15 +39,15 @@ char    *ft_get_env(t_data *data, char *sch)
     char    *find;
 
     i = 0;
-    printf("###########################3ici\n");
-    printf("###########################len tab vaut %d\n", len_tab(data->cpyenv));
+    //printf("###########################3ici\n");
+    //printf("###########################len tab vaut %d\n", len_tab(data->cpyenv));
     while (i < len_tab(data->cpyenv) && ft_strncmp(data->cpyenv[i], sch, ft_strlen(sch)) != 0)
     {
         printf("i vaut %d\n", i);
         i++;
     }
     // si j'arrive au bout de data ?.
-    printf("####### i vaut : %d et la len du tab vaut : %d\n\n", i, len_tab(data->cpyenv));
+    //printf("####### i vaut : %d et la len du tab vaut : %d\n\n", i, len_tab(data->cpyenv));
     if (i == len_tab(data->cpyenv))
         return (char_vide());
     find = malloc(sizeof(char) * ft_strlen(data->cpyenv[i]));
@@ -78,28 +78,28 @@ char    *replace_dol(t_data *data, char *str)
         i++;
     }
     ret[i++] = 0;
-    printf("############# ret vaut %s\n\n", ret);
+    //printf("############# ret vaut %s\n\n", ret);
     env = malloc(sizeof(char) * 100);
     j = 0;
     while (str[i] && (str[i] != ' ' && str[i] != 39 && str[i] != 34))
         env[j++] = str[i++];
     env[j] = 0;
-    printf("############# env vaut %s\n\n", env);
+    //printf("############# env vaut %s\n\n", env);
     //printf("############# ft_get_env vaut %s\n\n", ft_get_env(data, env));
     ret = ft_strjoin_and_free(ret, ft_get_env(data, env));
-    printf("############# final ret vaut %s\n\n", ret);
+    //printf("############# final ret vaut %s\n\n", ret);
     if (str[i])
     {
-        printf("##########ici\n");
+        //printf("##########ici\n");
         while (str[i])
         {
-            printf("##########je rentre par ici et le char vaut %c\n", str[i]);
+            //printf("##########je rentre par ici et le char vaut %c\n", str[i]);
             ret = add_char(ret, str[i]);
-            printf("###### add_char vaut : %s\n\n", ret);
+            //printf("###### add_char vaut : %s\n\n", ret);
             i++;
         }
         ret[ft_strlen(str) - ft_strlen(env) + ft_strlen(ft_get_env(data, env))] = 0;
-        printf("########## ret a la toute fin vaut %s\n", ret);
+        //printf("########## ret a la toute fin vaut %s\n", ret);
     }
     else
         ret[ft_strlen(str) - ft_strlen(env) + ft_strlen(ft_get_env(data, env))] = 0;
@@ -149,12 +149,12 @@ char	*handle_dollar(t_data *data, char *prompt)
 {
     char    *fin_prompt;
 
-    printf("##########is dollar vaut %d\n", is_dollar(prompt));
+    //printf("##########is dollar vaut %d\n", is_dollar(prompt));
     if (is_dollar(prompt) == 1)
         fin_prompt = replace_dol(data, prompt);
     else
         fin_prompt = ft_strdup(prompt);
 
-    printf("#######fin prompt vaut : %s\n\n", fin_prompt);
+    //printf("#######fin prompt vaut : %s\n\n", fin_prompt);
     return (fin_prompt);
 }

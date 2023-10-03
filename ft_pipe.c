@@ -19,7 +19,7 @@ void	free_cmd(char ***cmd, int num_cmd)
 
 	i = 0;
 	j = 0;
-	while (i < num_cmd)
+	while (i < num_cmd - 1)
 	{
 		while(cmd[i][j])
 		{
@@ -46,7 +46,6 @@ int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
 	}
 	else
 	{
-		perror("fork");
 		exit (1);
 	}
 	return (0);

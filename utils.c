@@ -142,3 +142,17 @@ char	*ft_remove_first_space(char *cmd)
 	//free(cmd);
 	return (dup);
 }
+
+int		check_only_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 32 && str[i] != 9)
+			return (0);
+		i++;
+	}
+	return (1);
+}

@@ -96,5 +96,6 @@ void	checkcmd(char **cmd, t_data *data);
 int		forpipe(char **cmd, t_data *data);
 int		new_std_outin(int output_fd, int input_fd, char *cmd, t_data *data);
 char	*recupthepath(t_data *data, char *cmd);
+int		check_only_space(char *str);
 
 #endif

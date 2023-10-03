@@ -108,10 +108,10 @@ int	get_cmd(t_data *data, int i)
 	//tmp = ft_split(data->fsplit[i], ' ');
 	//printf("ok\n");
 	//faire un remove space ? et tout copier dans cmd ?
-	printf("fsplit vaut :%s\n", data->fsplit[i]);
+	//printf("fsplit vaut :%s\n", data->fsplit[i]);
 	tmp = ft_remove_first_space(data->fsplit[i]);
 	//old version
-	printf("tmp vaut :%s\n", tmp);
+	//printf("tmp vaut :%s\n", tmp);
 	if (tmp)
 		data->cmd[i] = ft_strdup(tmp);
 	else
@@ -137,24 +137,24 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 		ft_printf("au moins une quote n'est pas ferme\n");
 		return (0) ;
 	}
+	//printf("le prompt n'a que des spaces ? %d\n", check_only_space(prompt));
+	if (check_only_space(prompt) == 1)
+		return (0);
 	data->prompt = handle_dollar(data, prompt);
-	printf("##### data->prompt vaut : %s\n\n", data->prompt);
+	//printf("##### data->prompt vaut : %s\n\n", data->prompt);
 	data->fsplit = first_split(data->prompt, '|');
-	//printf("les differentes parties du prompt sont : \n");
-	//check_tab(data->fsplit);
-	printf("\n\n");
 	get_num_pipe(data);
 	data->cmd = malloc(sizeof(char *) * (data->num_pip) + 2);
 	data->cmd[data->num_pip + 1] = 0;
 	while (data->fsplit[i])
 	{
-		printf("ok %d\n", i);
+		//printf("ok %d\n", i);
 		if (!get_cmd(data, i))
 			return (0) ;
 		i++;
 	}
-	printf("les differentes commandes sont : \n");
-	check_tab(data->cmd);
+	//printf("les differentes commandes sont : \n");
+	//check_tab(data->cmd);
 	return (1);
 	//begin_cmd(data, env);
 	//printf("fin ?\n");

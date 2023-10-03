@@ -27,7 +27,7 @@ void	do_export_no_name(t_data *data, char *exp)
         envcpy_2[i] = ft_strdup(data->cpyenv[i]);
         i++;
     }
-    printf("ok2\n");
+    //printf("ok2\n");
     envcpy_2[i++] = ft_strdup(exp);
     envcpy_2[i] = 0;
     ft_free_split(data->cpyenv);

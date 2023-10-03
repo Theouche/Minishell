@@ -75,6 +75,8 @@ int	main(int argc, char **argv, char **env)
 	while (42)
 	{
 		prompt = ft_readline();
+		if (!prompt)
+			break ;
 		//ft_printf("le prompte est : %s\n", prompt);
 		//check_prompt(prompt);   A faire !!!!!!
 		add_history(prompt);
@@ -83,18 +85,22 @@ int	main(int argc, char **argv, char **env)
 		{
 			if (ft_check_and_parse(data, prompt) == 1)
 			{
-				printf("les commandes sont :\n"); //plus utile ?
-				check_tab(data->cmd); // plus utile ?
-				printf("\n\n"); // plus utile ?
+				//printf("les commandes sont :\n"); //plus utile ?
+				//check_tab(data->cmd); // plus utile ?
+				//printf("\n\n"); // plus utile ?
 				if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
 				{
 					// faudra probablement free des trucs !!
 					break ;
 				}
-				if (data->num_pip >= 1)
-					forpipe(data->cmd, data);
-				else
-					begin_cmd(data, data->cmd[0]);
+				//printf("la premiere comm est :%s\n",data->cmd[0]);
+				if (data->cmd[0])
+				{
+					if (data->num_pip >= 1)
+						forpipe(data->cmd, data);
+					else
+						begin_cmd(data, data->cmd[0]);
+				}
 			}
 		}
 		//execute_cmd(lst_cmd, env);

@@ -23,9 +23,9 @@ void	sigint_handler(int signal)
 	}
 	else if (signal == SIGQUIT)
 	{
-        rl_replace_line("exit", 1);
-		//printf("\033[2D  ");
-		//printf("\033[2D");
+        //rl_replace_line("exit", 1);
+		printf("\033[2D  ");
+		printf("\033[2D");
 
 	}
 }

@@ -23,29 +23,29 @@ void    do_until_delim(t_data *data, char *comm, char *delim)
     redir = malloc(sizeof(t_data));
     while (42)
     {
-        printf("%s\n", line);
+        //printf("%s\n", line);
         if (ft_strcmp(line, delim) != 0)
         {
-            printf("not delim\n");
+            //printf("not delim\n");
             //tempcmd = ft_strjoin_and_free(line, " >> temp.txt");
             tempcmd = ft_strjoin(line, " >> temp.txt");
-            printf("tempcmd vaut %s\n", tempcmd);
+            //printf("tempcmd vaut %s\n", tempcmd);
             tempcmd = ft_strjoin_and_free1("echo ", tempcmd);
             //tempcmd = ft_strjoin("echo ", tempcmd);
-            printf("tempcmd 2 vaut %s\n", tempcmd);
+            //printf("tempcmd 2 vaut %s\n", tempcmd);
             ft_redir_double_droite(data, tempcmd);
             free(tempcmd);
-            printf("ok\n");
+            //printf("ok\n");
         }
         if (ft_strcmp(line, delim) == 0)
         {
-            printf("#########debut fin redi gauche \n");
+            //printf("#########debut fin redi gauche \n");
             finalcmd = ft_strjoin(comm, " < temp.txt");
-            printf("#########final cmd vaut %s\n", finalcmd);
+            //printf("#########final cmd vaut %s\n", finalcmd);
             ft_init_bis(data, redir, finalcmd);
-            printf("#########fin init donc deb exec com\n");
+            //printf("#########fin init donc deb exec com\n");
 		    begin_cmd(redir, finalcmd);
-            printf("####fin begin cmd\n");
+            //printf("####fin begin cmd\n");
             unlink("temp.txt");
             free(line);
             //ajouter fct pour free la structure !

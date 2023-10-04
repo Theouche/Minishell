@@ -153,9 +153,13 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 			return (0) ;
 		i++;
 	}
+	if (all_com_ok(data->cmd) == 1)
+		return (1);
+	else
+		return (0);
 	//printf("les differentes commandes sont : \n");
 	//check_tab(data->cmd);
-	return (1);
+	//return (1);
 	//begin_cmd(data, env);
 	//printf("fin ?\n");
 }

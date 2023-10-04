@@ -106,6 +106,43 @@ char    *replace_dol(t_data *data, char *str)
     return (ret);
 }
 
+char    *special_case(t_data *data, char *str)
+{
+    char    *ret;
+    int     i;
+
+    ret = malloc(sizeof(char) * ft_strlen(str));
+    i = 0;
+    while (str[i] != 36)
+    {
+        ret[i] = str[i];
+        i++;
+    }
+    ret[i++] = 0;
+    printf("############# avant ret vaut %s\n\n", ret);
+    ret = ft_strjoin_and_free(ret, ft_itoa(exitstatus(data->status)));
+    //printf("%s\n", ret);
+    printf("############# apres ret vaut %s\n\n", ret);
+    printf("############# l'erreur vaut %s\n\n", ft_itoa(exitstatus(data->status)));
+    printf("i vaut %d\n\n", i);
+    //i += ft_strlen(ft_itoa(exitstatus(data->status)));
+    printf("############# la logueur de l'erreur vaut %zu\n\n", ft_strlen(ft_itoa(exitstatus(data->status))));
+    printf("ensuite i vaut %d\n\n", i);
+    i++;
+    if (str[i])
+    {
+        while (str[i])
+        {
+            ret = add_char(ret, str[i]);
+            i++;
+        }
+        ret[ft_strlen(str) - 1 + ft_strlen(ft_itoa(exitstatus(data->status)))] = 0;
+    }
+    else
+        ret[ft_strlen(str) - 1 + ft_strlen(ft_itoa(exitstatus(data->status)))] = 0;
+    return (ret);
+}
+
 int     is_dollar(char *str)
 {
     int     i;
@@ -121,6 +158,8 @@ int     is_dollar(char *str)
             fq = str[i];
         else
         {
+            if (str[i] == 36 && (fq == 0 || fq == 34) && str[i + 1] && str[i + 1] == '?')
+                return (2);   
             if (str[i] == 36 && (fq == 0 || fq == 34) && str[i + 1] && str[i + 1] != ' ' && str[i + 1] != 0)
                 return (1);
         }
@@ -152,6 +191,8 @@ char	*handle_dollar(t_data *data, char *prompt)
     //printf("##########is dollar vaut %d\n", is_dollar(prompt));
     if (is_dollar(prompt) == 1)
         fin_prompt = replace_dol(data, prompt);
+    if (is_dollar(prompt) == 2)
+        fin_prompt = special_case(data, prompt);
     else
         fin_prompt = ft_strdup(prompt);
     //printf("#######fin prompt vaut : %s\n\n", fin_prompt);

@@ -156,3 +156,58 @@ int		check_only_space(char *str)
 	}
 	return (1);
 }
+
+int		red_not_ok(char *cmd, char c)
+{
+	char	**split;
+	int		len;
+	int		i;
+
+	split = ft_split(cmd, ' ');
+	len = 0;
+	while (split[len])
+		len++;
+	//if (len == 1)
+	//	return (1);
+	i = 0;
+	while (split[i][0] != c)
+		i++;
+	if (i == len - 1 || len == 1)
+	{
+		printf("bash: syntax error near"); 
+		printf(" unexpected token `newline'\n");
+		return (1);
+	}
+	return (0);
+}
+
+int	all_com_ok(char **cmd)	
+{
+	int		i;
+	char	c;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (check_only_space(cmd[i]) == 1)
+		{
+			printf("bash: syntax error near"); 
+			printf(" unexpected token `|'\n");
+			return (0);
+		}
+		if (ft_strchr_dbred(cmd[i], '<') == 1)
+		{
+			c = '<';
+			if (red_not_ok(cmd[i], c) == 1)
+				return (0);
+		}
+		if (ft_strchr_dbred(cmd[i], '>') == 1)
+		{
+			c = '>';
+			if (red_not_ok(cmd[i], c) == 1)
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}

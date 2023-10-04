@@ -84,10 +84,11 @@ void	checkcmd(char **cmd, t_data *data)
 	exit(127);
 }
 
-void    exitstatus(int status)
+int    exitstatus(int status)
 {
-        if (WIFEXITED(status))
-                ft_printf("%d\n", WEXITSTATUS(status));
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
-		ft_printf("%d\n", WTERMSIG(status));
+		return (WTERMSIG(status));
+	return (status);
 }

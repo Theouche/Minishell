@@ -18,9 +18,9 @@ void	free_cmd(char ***cmd, int num_cmd)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < num_cmd - 1)
 	{
+		j = 0;
 		while(cmd[i][j])
 		{
 			free(cmd[i][j]);
@@ -29,6 +29,7 @@ void	free_cmd(char ***cmd, int num_cmd)
 		free(cmd[i]);
 		i++;
 	}
+	free(cmd);
 }
 
 int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
@@ -45,9 +46,7 @@ int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
 		return (0);
 	}
 	else
-	{
 		exit (1);
-	}
 	return (0);
 }
 
@@ -97,12 +96,13 @@ int		ft_pipe(char ***cmds, int num_cmd, t_data *data)
 		i++;
 	}
 	ft_pipe1(num_cmd, pipefd, cmds, data);
-	/*i = 0;
+	i = 0;
 	while (i < num_cmd - 1)
 	{
 		free(pipefd[i]);
 		i++;
-	}*/
+	}
+	free(pipefd);
 	return (0);
 }
 

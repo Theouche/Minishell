@@ -144,7 +144,7 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 	//printf("##### data->prompt vaut : %s\n\n", data->prompt);
 	data->fsplit = first_split(data->prompt, '|');
 	get_num_pipe(data);
-	data->cmd = malloc(sizeof(char *) * (data->num_pip) + 2);
+	data->cmd = ft_calloc(sizeof(char *), (data->num_pip) + 2);
 	data->cmd[data->num_pip + 1] = 0;
 	while (data->fsplit[i])
 	{

@@ -23,7 +23,7 @@ SRC = main.c init.c execute.c ft_parse_2.c handle_dollar.c ft_execute2.c \
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 ### COLORS ###
 

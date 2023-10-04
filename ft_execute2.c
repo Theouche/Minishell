@@ -6,7 +6,7 @@
 /*   By: leudelin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:45:59 by leudelin          #+#    #+#             */
-/*   Updated: 2023/10/02 10:28:15 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/04 15:02:51 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	checkcmd(char **cmd, t_data *data)
 {
 	char	*path;
 	pid_t	pid;
-	int		status;
 
 	path = recupthepath(data, cmd[0]);
 	//printf("le path vaur %s\n", path);
@@ -74,7 +73,7 @@ void	checkcmd(char **cmd, t_data *data)
 		execve(path, cmd, data->cpyenv);
 	else if (pid > 0)
 	{
-		waitpid(pid, &status, 0);
+		waitpid(pid, &data->status, 0);
 		return ;
 	}
 	else
@@ -82,4 +81,13 @@ void	checkcmd(char **cmd, t_data *data)
 		perror("fork could not get created :(");
 		exit (1);
 	}
+	exit(127);
+}
+
+void    exitstatus(int status)
+{
+        if (WIFEXITED(status))
+                ft_printf("%d\n", WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+		ft_printf("%d\n", WTERMSIG(status));
 }

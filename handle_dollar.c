@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:41:38 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/28 11:42:06 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/04 15:15:28 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ char	*handle_dollar(t_data *data, char *prompt)
         fin_prompt = replace_dol(data, prompt);
     else
         fin_prompt = ft_strdup(prompt);
-
     //printf("#######fin prompt vaut : %s\n\n", fin_prompt);
     return (fin_prompt);
 }

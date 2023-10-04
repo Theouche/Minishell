@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:52:30 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/22 11:00:45 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/04 14:25:42 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_builtin(t_data *data, char *cmd)
 	split = ft_split(cmd, ' ');
 	//printf("la commamde est : %s\n", split[0]);
 	if (ft_strcmp(split[0], "echo") == 0)
-		return (apply_echo(cmd));
+		return (apply_echo(cmd, data));
 	else if (ft_strcmp(split[0], "cd") == 0)
 		return (apply_cd(data, split));
 	else if (ft_strcmp(split[0], "pwd") == 0)

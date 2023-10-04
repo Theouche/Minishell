@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:15:22 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/22 15:48:56 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/04 15:05:33 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <sys/stat.h>
 #include <sys/wait.h>
 # include <fcntl.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 # define NAME "\033[1;36m🐚  Minishell "
 # define VIOLET "\033[1;35m"
@@ -58,7 +60,7 @@ void	ft_echo(char *word_to_print);
 //void    print_cmd(char **list_cmd);
 void    print_cmd(t_list *lst_cmd);
 //void    execute_cmd(t_data *data, char **env);
-int     apply_echo(char *cmd);
+int     apply_echo(char *cmd, t_data *data);
 int		is_quote(char *cmd);
 char    *remove_quote(char *cmd);
 int     apply_pwd(t_data *data);
@@ -97,5 +99,6 @@ int		forpipe(char **cmd, t_data *data);
 int		new_std_outin(int output_fd, int input_fd, char *cmd, t_data *data);
 char	*recupthepath(t_data *data, char *cmd);
 int		check_only_space(char *str);
+void    exitstatus(int status);
 
 #endif

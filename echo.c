@@ -6,16 +6,18 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:11:19 by tlorne            #+#    #+#             */
-/*   Updated: 2023/09/02 12:22:07 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/04 14:30:45 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	go_i(char *cmd, int i)
+int	go_i(char *cmd, int i, t_data *data)
 {
 	char	c;
 
+	if (cmd[i] == '$' && cmd[i + 1] == '?')
+		exitstatus(data->status);
 	if (cmd[i] == '-' && cmd[i + 1] == 'n')
 		return (2);
 	if (cmd[i] == 34 || cmd[i] == 39)
@@ -42,7 +44,7 @@ int	check_arg(char *cmd, int i)
 	return (0);
 }
 
-void	echo_w_q(char *cmd)
+void	echo_w_q(char *cmd, t_data *data)
 {
 	int	i;
 	int	arg;
@@ -52,7 +54,7 @@ void	echo_w_q(char *cmd)
 	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
 	arg = check_arg(cmd, i);
-	i += go_i(cmd, i);
+	i += go_i(cmd, i, data);
 	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
 	while (cmd[i])
@@ -85,7 +87,7 @@ int	is_quote_echo(char *cmd)
 	return (0);
 }
 
-int	apply_echo(char *cmd)
+int	apply_echo(char *cmd, t_data *data)
 {
 	int	i;
 	int	arg;
@@ -97,7 +99,7 @@ int	apply_echo(char *cmd)
 	//ft_printf("debut fonction echo \n");
 	if (is_quote_echo(cmd))
 	{
-		echo_w_q(cmd);
+		echo_w_q(cmd, data);
 		return (1);
 	}
 	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))

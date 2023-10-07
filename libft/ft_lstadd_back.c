@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*lastelem;
-	printf("deb add back\n");
+
 	if (!lst || !new)
 		return ;
 	lastelem = ft_lstlast(*lst);
@@ -24,5 +23,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 		lastelem->next = new;
-	printf("fin add back\n");
 }

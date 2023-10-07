@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 17:27:02 by tlorne            #+#    #+#             */
-/*   Updated: 2023/08/14 16:45:42 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:32:45 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,21 @@
 #  define BUFFER_SIZE 42
 # endif
 
-/*typedef struct s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}	t_list;*/
-
-typedef struct s_list
-{
-	char			*cmd;
-	int				pipe;
-	int				redir;
-//      char                    *file_out;
-//      char                    *file_in;
-//      char                    *type_in;
-//      char                    *type_out;
-	struct s_list *next;
 }	t_list;
 
-//t_list	*ft_lstnew(void *content);
-t_list	*ft_lstnew(char *content, int pipe, int red);
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 size_t	ft_strlen(const char *str);
 int		ft_toupper(int c);
 int		ft_tolower(int c);

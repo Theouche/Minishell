@@ -14,14 +14,9 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	write(1, "deb last\n", 9);
 	if (!lst)
-	{
-		write(1, "fin lastNN\n", 11);
 		return (NULL);
-	}
 	while (lst->next)
 		lst = lst->next;
-	write(1, "fin last\n", 9);
 	return (lst);
 }

@@ -46,16 +46,16 @@ int	check_arg(char *cmd, int i)
 
 void	echo_w_q(char *cmd, t_data *data)
 {
-	int	i;
-	int	arg;
+	int		i;
+	int		arg;
 	char	fq;
 
 	i = 4;
-	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
+	while (cmd[i] && ((cmd[i] >= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
 	arg = check_arg(cmd, i);
 	i += go_i(cmd, i, data);
-	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
+	while (cmd[i] && ((cmd[i] >= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
 	while (cmd[i])
 	{
@@ -91,32 +91,27 @@ int	apply_echo(char *cmd, t_data *data)
 {
 	int	i;
 	int	arg;
-	//char	*cmd;
 
 	i = 4;
 	arg = 0;
-	//cmd = data->fsplit[0];
 	//ft_printf("debut fonction echo \n");
 	if (is_quote_echo(cmd))
 	{
 		echo_w_q(cmd, data);
 		return (1);
 	}
-	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
+	while (cmd[i] && ((cmd[i] >= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
 	if (cmd[i] == '-' && cmd[i + 1] == 'n')
 	{
 		arg = 1;
 		i = i + 2;
 	}
-	while (cmd[i] && ((cmd[i]>= 9 && cmd[i] <= 13) || cmd[i] == 32))
-                i++;
-	while (cmd[i])
-	{
-		ft_printf("%c", cmd[i]);
+	while (cmd[i] && ((cmd[i] >= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
-	}
+	while (cmd[i])
+		ft_printf("%c", cmd[i++]);
 	if (arg == 0)
 		ft_printf("\n");
-	return (1);	
+	return (1);
 }

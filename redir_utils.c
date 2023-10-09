@@ -27,6 +27,7 @@ char	*add_space(char *cmd)
 	}
 	cmd_ws[i++] = ' ';
 	cmd_ws[i] = 0;
+	free(cmd);
 	return (cmd_ws);
 }
 

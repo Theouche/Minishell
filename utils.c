@@ -174,10 +174,12 @@ int		red_not_ok(char *cmd, char c)
 		i++;
 	if (i == len - 1 || len == 1)
 	{
+		ft_free_split(split);
 		printf("bash: syntax error near"); 
 		printf(" unexpected token `newline'\n");
 		return (1);
 	}
+	ft_free_split(split);
 	return (0);
 }
 

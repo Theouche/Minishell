@@ -30,10 +30,10 @@ void	clean_and_resend(t_data *data, char **split)
 	new_cmd = malloc(1 * sizeof(char));
 	new_cmd[0] = 0;
 	i = 0;
-	redir = malloc(sizeof(t_data));
+	redir = ft_calloc(sizeof(t_data), 1);
 	while (split[i][0] != '>')
 	{
-		new_cmd = ft_strjoin_and_free(new_cmd, split[i]);
+		new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
 		if (split[i + 1][0] != '>')
 		{
 			//printf("############################ici###################\n");
@@ -50,6 +50,7 @@ void	clean_and_resend(t_data *data, char **split)
 		begin_cmd(redir, new_cmd);
 		//ajouter fct pour free la structure !
 	}
+	end_prog(redir, new_cmd);
 }
 
 void	creat_doc(char	*outfile)
@@ -90,6 +91,8 @@ void	ft_redir_double_droite(t_data *data, char *cmd)
 		perror("Erreur lors de la restauration de la sortie standard");
 		exit(1);
 	}
+	//printf("################## ok7\n");
 	ft_free_split(split);
+	//printf("################## ok8\n");
 	close(orig_std_out);
 }

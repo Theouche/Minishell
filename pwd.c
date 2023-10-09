@@ -36,5 +36,6 @@ int     apply_pwd(t_data *data)
 	while (pwd[++j])
 		ft_printf("%c", pwd[j]);
 	ft_printf("\n");
+	free(pwd);
 	return (2);
 }

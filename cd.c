@@ -14,48 +14,34 @@
 
 void	change_pwd_env(t_data *data, char *old_pwd)
 {
-	/*int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (!ft_strncmp(env[i], "PWD", 3))
-		i++;
-	while (!ft_strncmp(data->cpyenv[j], "PWD", 3))
-		j++;
-	data->cpyenv[j] = ft_strdup(env[i]);
-	i = 0;
-	j = 0;
-	while (!ft_strncmp(env[i], "OLDPWD", 6))
-		i++;
-	while (!ft_strncmp(data->cpyenv[j], "OLDPWD", 6))
-		j++;
-	data->cpyenv[j] = ft_strdup(env[i]);*/
-
-	// new version 
-
 	char	*new_pwd;
+	char	*new_cd;
 	int		i;
 	int		j;
 
-	new_pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
+	new_cd = getcwd(NULL, 0);
+	new_pwd = ft_strjoin("PWD=", new_cd);
 	i = 0;
 	j = 0;
 	while (ft_strncmp(data->cpyenv[i], "PWD", 3) != 0)
 		i++;
 	while (ft_strncmp(data->cpyenv[j], "OLDPWD", 6) != 0)
 		j++;
+	free(data->cpyenv[i]);
+	free(data->cpyenv[j]);
 	data->cpyenv[i] = ft_strdup(new_pwd);
 	data->cpyenv[j] = ft_strdup(old_pwd);
+	free(new_cd);
+	free(new_pwd);
 }
 
 int	apply_cd(t_data *data, char **dir)
 {
-	//char	**dir;
 	char	*old_pwd;
+	char	*old_cd;
 
-	//dir = ft_split(data->fsplit[0], ' ');
-	old_pwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));;
+	old_cd = getcwd(NULL, 0);
+	old_pwd = ft_strjoin("OLDPWD=", old_cd);
 	if (!dir[1] || (dir[1][0] == '~' && dir[1][1] == '\0'))
 		chdir(data->home);
 	else if (dir[2])
@@ -63,6 +49,9 @@ int	apply_cd(t_data *data, char **dir)
 	else if (chdir(dir[1]) == -1)
 		ft_printf("cd: no such file or directory: %s\n", dir[1]);
 	change_pwd_env(data, old_pwd);
-	//ft_free_split(dir);
+	//ajout free
+	ft_free_split(dir);
+	free(old_cd);
+	free(old_pwd);
 	return (3);
 }

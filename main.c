@@ -18,8 +18,10 @@ char	*create_prompt(char *name, char *split)
 	char	*temp;
 
 	temp = ft_strjoin(name, split);
-	temp = ft_strjoin(temp, " > ");
-	temp = ft_strjoin(temp, WHITE);
+	//temp = ft_strjoin(temp, " > ");
+	//temp = ft_strjoin(temp, WHITE);
+	temp = ft_strjoin_and_free2(temp, " > ");
+	temp = ft_strjoin_and_free2(temp, WHITE);
 	prompt = readline(temp);
 	free(temp);
 	free(name);
@@ -49,8 +51,8 @@ char	*ft_readline(void)
 		split[1] = NULL;
 		i++;
 	}
-	free(path);
 	prompt = create_prompt(name, split[i]);
+	free(path);
 	ft_free_split(split);
 	return (prompt);
 }
@@ -91,6 +93,7 @@ int	main(int argc, char **argv, char **env)
 				if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
 				{
 					// faudra probablement free des trucs !!
+					end_prog(data, prompt);
 					break ;
 				}
 				//printf("la premiere comm est :%s\n",data->cmd[0]);
@@ -103,6 +106,7 @@ int	main(int argc, char **argv, char **env)
 				}
 			}
 		}
+		end_turn(data, prompt);
 		//execute_cmd(lst_cmd, env);
 	}
 	//ajouter fct pour free la structure !

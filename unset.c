@@ -12,11 +12,6 @@
 
 #include "minishell.h"
 
-// int ou sizet  strss_size(char **)
-////// void  free_strss(char **)
-// int strs_are_eauals(str1, str2)
-
-
 void	do_unset_find(t_data *data, char *unset)
 {
     int     i;
@@ -36,11 +31,11 @@ void	do_unset_find(t_data *data, char *unset)
             envcpy_2[j++] = ft_strdup(data->cpyenv[i]);
         i++;
     }
-    envcpy_2[i] = 0;
+    envcpy_2[j] = 0;
     //printf(" copie realise de %d elements\n", i);
-    //ft_free_split(data->cpyenv);
+    ft_free_split(data->cpyenv);
     //printf("c'est ce free qui deconne ?\n");
-    data->cpyenv = malloc(sizeof(char *) * (i + 1));
+    data->cpyenv = malloc(sizeof(char *) * (i));
     //printf("malloc fait\n");
     i = -1;
     while (envcpy_2[++i])
@@ -50,7 +45,7 @@ void	do_unset_find(t_data *data, char *unset)
     }
     data->cpyenv[i] = 0;
     //printf(" copie realise de %d elements\n", i);
-    //ft_free_split(envcpy_2);
+    ft_free_split(envcpy_2);
     //printf(" copie realise de %d elements\n", i);
     return ;
 }
@@ -102,7 +97,7 @@ void    ft_unset(t_data *data, char **unset)
         if (check_arg_unset(unset[i]) == 1)
         {
             do_unset(data, unset[i]);
-            printf("le mot %s est fait\n", unset[i]);
+            //printf("le mot %s est fait\n", unset[i]);
             //check_tab(data->cpyenv);
         }
         else
@@ -113,14 +108,13 @@ void    ft_unset(t_data *data, char **unset)
 int apply_unset(t_data *data, char **cmd)
 {
     int     i;
-    //char    **cmd;
+    int     len;
     char    **clean_cmd;
 
-    i = 0;
-    //cmd = ft_split(data->fsplit[0], ' ');
-    while (cmd[i])
-        i++;
-    clean_cmd = malloc(sizeof(char *) * i + 1);
+    len = 0;
+    while (cmd[len])
+        len++;
+    clean_cmd = malloc(sizeof(char *) * (len + 1));
     clean_cmd[0] = ft_strdup(cmd[0]);
     i = 1;
     while (cmd[i])
@@ -135,7 +129,9 @@ int apply_unset(t_data *data, char **cmd)
             clean_cmd[i] = ft_strdup(cmd[i]);
         i++;
     }
-    clean_cmd[i] = 0;
+    clean_cmd[len] = 0;
     ft_unset(data, clean_cmd);
+    ft_free_split(clean_cmd);
+    ft_free_split(cmd);
     return (5);
 }

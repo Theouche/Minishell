@@ -54,12 +54,8 @@ typedef	struct s_data
 }	t_data;
 
 void    ft_init(t_data *data, char **env);
-//void    ft_parse(char *prompt, t_list **lst_cmd);
-//char	**ft_parse(char *prompt);
 void	ft_echo(char *word_to_print);
-//void    print_cmd(char **list_cmd);
 void    print_cmd(t_list *lst_cmd);
-//void    execute_cmd(t_data *data, char **env);
 int     apply_echo(char *cmd, t_data *data);
 int		is_quote(char *cmd);
 char    *remove_quote(char *cmd);
@@ -101,5 +97,7 @@ char	*recupthepath(t_data *data, char *cmd);
 int		check_only_space(char *str);
 int		exitstatus(int status);
 int		all_com_ok(char **cmd);
+void	end_turn(t_data *data, char *prompt);
+void	end_prog(t_data *data, char *prompt);
 
 #endif

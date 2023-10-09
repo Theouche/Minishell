@@ -122,7 +122,7 @@ int	get_cmd(t_data *data, int i)
 		return (0);
 	}
 	//printf("%s\n", data->cmd[i]);
-	//free(tmp);
+	free(tmp);
 	return (1);
 }
 

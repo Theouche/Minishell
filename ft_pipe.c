@@ -6,7 +6,7 @@
 /*   By: leudelin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:58:29 by leudelin          #+#    #+#             */
-/*   Updated: 2023/10/04 14:31:19 by leudelin         ###   ########.fr       */
+/*   Updated: 2023/10/07 16:08:07 by tlorne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_cmd(char ***cmd, int num_cmd)
 	while (i < num_cmd - 1)
 	{
 		j = 0;
-		while(cmd[i][j])
+		while (cmd[i][j])
 		{
 			free(cmd[i][j]);
 			j++;
@@ -32,10 +32,10 @@ void	free_cmd(char ***cmd, int num_cmd)
 	free(cmd);
 }
 
-int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
+int	checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
 {
 	pid_t	pid;
-	
+
 	pid = fork();
 	if (pid == 0)
 		new_std_outin(output_fd, input_fd, cmd, data);
@@ -49,25 +49,25 @@ int		checkcmdpipe(int input_fd, int output_fd, char *cmd, t_data *data)
 	return (0);
 }
 
-int		ft_pipe1(int num_cmd, int **pipefd, char ***cmds, t_data *data)
+int	ft_pipe1(int num_cmd, int **pipefd, char ***cmds, t_data *data)
 {
 	int		input_fd;
 	int		output_fd;
 	int		i;
-	(void)cmds;
 
+	(void)cmds;
 	i = 0;
 	input_fd = STDIN_FILENO;
 	while (i < num_cmd)
 	{
-		if (num_cmd - 1 == i) //si c'est la derniere commande (par rapport a l'index)
+		if (num_cmd - 1 == i)
 			output_fd = STDOUT_FILENO;
 		else
-			output_fd = pipefd[i][1]; //sinon on redirige vers le stdout de la pipe
-		checkcmdpipe(input_fd, output_fd,  data->cmd[i], data);
-		if (i > 0) //si c'est ni la 1ere ni la derniere on ferme le pipedfd precedent car pu besoin
-			close(pipefd[i - 1][0]); //- 1 du coup car par rapport a l'index tt est decaler tmtc
-		if (i < num_cmd - 1) //si c'est pas la derniere on redirige vers le pipefd de lecture
+			output_fd = pipefd[i][1];
+		checkcmdpipe(input_fd, output_fd, data->cmd[i], data);
+		if (i > 0)
+			close(pipefd[i - 1][0]);
+		if (i < num_cmd - 1)
 		{
 			input_fd = pipefd[i][0];
 			close(pipefd[i][1]);
@@ -77,16 +77,16 @@ int		ft_pipe1(int num_cmd, int **pipefd, char ***cmds, t_data *data)
 	return (0);
 }
 
-int		ft_pipe(char ***cmds, int num_cmd, t_data *data)
+int	ft_pipe(char ***cmds, int num_cmd, t_data *data)
 {
 	int		**pipefd;
 	int		i;
 
 	i = 0;
-	pipefd = malloc(sizeof(int *) * num_cmd - 1); //malloc general par rapport au nombre de commande
+	pipefd = malloc(sizeof(int *) * num_cmd - 1);
 	while (i < num_cmd - 1)
 	{
-		pipefd[i] = malloc(2 * sizeof(int)); //malloc pour une seule pipe (*2 car pour lecture et ecriture)
+		pipefd[i] = malloc(2 * sizeof(int));
 		if (pipe(pipefd[i]) == -1)
 		{
 			perror("error creating pipe");
@@ -105,8 +105,7 @@ int		ft_pipe(char ***cmds, int num_cmd, t_data *data)
 	return (0);
 }
 
-
-int		forpipe(char **cmd, t_data *data)
+int	forpipe(char **cmd, t_data *data)
 {
 	char	***cmds;
 	int		num_cmd;
@@ -127,7 +126,6 @@ int		forpipe(char **cmd, t_data *data)
 		cmds[i] = ft_split(cmd[i], ' ');
 		i++;
 	}
-	//printf("salut c'est fanta");
 	ft_pipe(cmds, num_cmd, data);
 	free_cmd(cmds, num_cmd);
 	return (0);

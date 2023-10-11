@@ -99,5 +99,6 @@ int		exitstatus(int status);
 int		all_com_ok(char **cmd);
 void	end_turn(t_data *data, char *prompt);
 void	end_prog(t_data *data, char *prompt);
+void	no_env(t_data *data);
 
 #endif

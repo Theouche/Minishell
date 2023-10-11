@@ -18,7 +18,7 @@ void	free_cmd(char ***cmd, int num_cmd)
 	int	j;
 
 	i = 0;
-	while (i < num_cmd - 1)
+	while (i <= num_cmd - 1)
 	{
 		j = 0;
 		while (cmd[i][j])

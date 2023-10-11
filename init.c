@@ -81,7 +81,10 @@ void	ft_getpwd(t_data *data)
 	i = 0;
 	while (strncmp(data->cpyenv[i], "PWD", 3) != 0)
 		i++;
-	data->pwd = ft_strdup(data->cpyenv[i]);
+	if (data->cpyenv[i] && strncmp(data->cpyenv[i], "PWD", 3) == 0)
+		data->pwd = ft_strdup(data->cpyenv[i]);
+	else
+		return ;
 }
 
 void	ft_init(t_data *data, char **env)

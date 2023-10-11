@@ -62,6 +62,7 @@ int	main(int argc, char **argv, char **env)
 	t_data	*data;
 	//char	**lst_cmd;
 	char	*prompt;
+	int		not;
 	//t_list	*lst_cmd;
 
 	if (argc != 1 || argv[1])
@@ -76,15 +77,18 @@ int	main(int argc, char **argv, char **env)
 	set_signal();
 	while (42)
 	{
+		not = 0;
 		prompt = ft_readline();
 		if (!prompt)
 			break ;
 		//ft_printf("le prompte est : %s\n", prompt);
 		//check_prompt(prompt);   A faire !!!!!!
+		add_history("ls -la | grep drwxr | wc");
 		add_history(prompt);
 		data->redir = 0;
-		if (prompt[0])
+		if (prompt[0] != 0)
 		{
+			not = 1;
 			if (ft_check_and_parse(data, prompt) == 1)
 			{
 				//printf("les commandes sont :\n"); //plus utile ?
@@ -105,8 +109,11 @@ int	main(int argc, char **argv, char **env)
 						begin_cmd(data, data->cmd[0]);
 				}
 			}
+			end_turn(data, prompt);
 		}
-		end_turn(data, prompt);
+		if (not == 0)
+			free(prompt);
+		//end_turn(data, prompt);
 		//execute_cmd(lst_cmd, env);
 	}
 	//ajouter fct pour free la structure !

@@ -18,13 +18,15 @@ void	clean_and_resend2(t_data *data, char **split)
 	char	*new_cmd;
 	t_data	*redir;
 
+	if (ft_strcmp(split[0], ">") == 0)
+        return ;
 	new_cmd = malloc(1 * sizeof(char));
 	new_cmd[0] = 0;
 	i = 0;
-	redir = malloc(sizeof(t_data));
+	redir = ft_calloc(sizeof(t_data), 1);
 	while (split[i][0] != '>')
 	{
-		new_cmd = ft_strjoin_and_free(new_cmd, split[i]);
+		new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
 		if (split[i + 1][0] != '>')
 		{
 			//printf("############################ici###################\n");
@@ -40,6 +42,7 @@ void	clean_and_resend2(t_data *data, char **split)
 		ft_init_bis(data, redir, new_cmd);
 		begin_cmd(redir, new_cmd);
 	}
+	end_prog(redir, new_cmd);
 }
 
 void    creat_doc2(char *outfile)

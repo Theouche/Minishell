@@ -37,7 +37,7 @@ char	*recupthepath(t_data *data, char *cmd)
 			while (split[j])
 			{
 				path = ft_strjoin(split[j], "/");
-				path = ft_strjoin(path, cmd);
+				path = ft_strjoin_and_free2(path, cmd);
 				if (access(path, X_OK) == 0)
 				{
 					ft_free_split(split);
@@ -61,10 +61,16 @@ void	checkcmd(char **cmd, t_data *data)
 	path = recupthepath(data, cmd[0]);
 	pid = fork();
 	if (pid == 0)
+	{
 		execve(path, cmd, data->cpyenv);
+		//printf("ok\n");
+		//free(path);
+	}
 	else if (pid > 0)
 	{
 		waitpid(pid, &data->status, 0);
+		//printf("ok\n");
+		free(path);
 		return ;
 	}
 	else
@@ -72,6 +78,7 @@ void	checkcmd(char **cmd, t_data *data)
 		perror("fork could not get created :(");
 		exit (1);
 	}
+	//free(path);
 	exit(127);
 }
 

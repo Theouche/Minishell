@@ -27,6 +27,8 @@ void	clean_and_resend(t_data *data, char **split)
 	char	*new_cmd;
 	t_data	*redir;
 
+	if (ft_strcmp(split[0], ">>") == 0)
+        return ;
 	new_cmd = malloc(1 * sizeof(char));
 	new_cmd[0] = 0;
 	i = 0;

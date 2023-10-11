@@ -12,15 +12,18 @@
 
 #include "minishell.h"
 
-void    clean_and_resend3(void)
+void    clean_and_resend3(char *deb)
 {
     char    *buffer;
     int     res_read;
 
+    if (ft_strcmp(deb, "<") == 0)
+        return ;
     buffer = malloc((42 + 1) * sizeof(char));
     res_read = 1;
     while (res_read > 0)
     {
+        //printf("ici\n");
         res_read = read(STDIN_FILENO, buffer, 42);
         buffer[res_read] = 0;
         write(STDOUT_FILENO, buffer, res_read);
@@ -32,9 +35,10 @@ void    clean_and_resend3(void)
 	{
 		perror("Erreur lors de la lecture de l'entrée");
 	}
+    free(buffer);
 }
 
-void    creat_doc3(char *infile)
+int    creat_doc3(char *infile)
 {
     int new_fd_input;
 
@@ -42,12 +46,15 @@ void    creat_doc3(char *infile)
     if (new_fd_input == -1)
 	{
 		perror("Erreur lors de l'ouverture du fichier");
+        close(new_fd_input);
+        return (0);
 	}
 	if (dup2(new_fd_input, STDIN_FILENO) == -1)
 	{
 		perror("Erreur lors de la redirection de l'entrée");
 	}
 	close(new_fd_input);
+    return (1);
 }
 
 void	ft_redir_gauche(t_data *data, char *cmd)
@@ -64,8 +71,8 @@ void	ft_redir_gauche(t_data *data, char *cmd)
     while (split[i])
         i++;
     infile = split[i - 1];
-    creat_doc3(infile);
-    clean_and_resend3();
+    if (creat_doc3(infile) == 1)
+        clean_and_resend3(split[0]);
     if (dup2(orig_std_in, STDIN_FILENO) == -1) 
 	{
 		perror("Erreur lors de la restauration de la sortie standard");

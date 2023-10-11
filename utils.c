@@ -197,13 +197,13 @@ int	all_com_ok(char **cmd)
 			printf(" unexpected token `|'\n");
 			return (0);
 		}
-		if (ft_strchr_dbred(cmd[i], '<') == 1)
+		if (ft_strchr_red(cmd[i], '<') == 1)
 		{
 			c = '<';
 			if (red_not_ok(cmd[i], c) == 1)
 				return (0);
 		}
-		if (ft_strchr_dbred(cmd[i], '>') == 1)
+		if (ft_strchr_red(cmd[i], '>') == 1)
 		{
 			c = '>';
 			if (red_not_ok(cmd[i], c) == 1)

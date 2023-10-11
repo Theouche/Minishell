@@ -61,7 +61,10 @@ int	is_builtin(t_data *data, char *cmd)
 	else if (ft_strcmp(split[0], "cd") == 0)
 		return (apply_cd(data, split));
 	else
+	{
+		ft_free_split(split);
 		return (0);
+	}
 }
 
 void	execute_cmd(t_data *data, char *cmd)
@@ -72,6 +75,7 @@ void	execute_cmd(t_data *data, char *cmd)
 	{
 		split = ft_split(cmd, ' ');
 		checkcmd(split, data);
+		ft_free_split(split);
 		return ;
 	}
 }

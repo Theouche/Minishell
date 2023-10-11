@@ -17,6 +17,12 @@ void	ft_getenv(t_data *data, char **env)
 	int	i;
 
 	i = 0;
+	if (!env[0])
+	{
+		data->cpyenv = malloc(sizeof(char *) * 4);
+		no_env(data);
+		return ;
+	}
 	while (env[i])
 		i++;
 	data->cpyenv = malloc(sizeof(char *) * (i + 1));
@@ -36,19 +42,22 @@ void	ft_getpath(t_data *data)
 	int	k;
 
 	i = 0;
-	while (strncmp(data->cpyenv[i], "PATH", 4) != 0)
+	while (data->cpyenv[i] && strncmp(data->cpyenv[i], "PATH", 4) != 0)
 		i++;
 	//data->path = ft_strdup(data->cpyenv[i]);
-	data->path = malloc(sizeof(char) * (ft_strlen(data->cpyenv[i]) + 1));
-	k = 0;
-	j = 5;
-	while (data->cpyenv[i][j])
+	if (data->cpyenv[i] && strncmp(data->cpyenv[i], "PATH", 4) == 0)
 	{
-		data->path[k] = data->cpyenv[i][j];
-		k++;
-		j++;
+		data->path = malloc(sizeof(char) * (ft_strlen(data->cpyenv[i]) + 1));
+		k = 0;
+		j = 5;
+		while (data->cpyenv[i][j])
+		{
+			data->path[k] = data->cpyenv[i][j];
+			k++;
+			j++;
+		}
+		data->path[k] = 0;
 	}
-	data->path[k] = 0;
 	//printf("Path vaut : %s\n", data->path);
 }
 
@@ -57,9 +66,12 @@ void	ft_gethome(t_data *data)
 	int	i;
 
 	i = 0;
-	while (strncmp(data->cpyenv[i], "HOME", 4) != 0)
+	while (data->cpyenv[i] && strncmp(data->cpyenv[i], "HOME", 4) != 0)
 		i++;
-	data->home = ft_strdup(data->cpyenv[i]);
+	if (data->cpyenv[i] && strncmp(data->cpyenv[i], "HOME", 4) == 0)
+		data->home = ft_strdup(data->cpyenv[i]);
+	else
+		return ;
 }
 
 void	ft_getpwd(t_data *data)

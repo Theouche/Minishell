@@ -45,11 +45,16 @@ void	clean_and_resend2(t_data *data, char **split)
 	end_prog(redir, new_cmd);
 }
 
-void    creat_doc2(char *outfile)
+void    creat_doc2(char **outfile)
 {
     int new_fd_output;
+	int	i;
 
-    new_fd_output = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	i = 0;
+	while ((i < len_tab(outfile) - 1) && outfile[i])
+		openopen(outfile[i++], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+    new_fd_output = open(outfile[i], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	ft_free_split(outfile);
     if (new_fd_output == -1)
     {
         perror("Erreur lors de l'ouverture du fichier");
@@ -65,17 +70,23 @@ void    creat_doc2(char *outfile)
 
 void	ft_redir_droite(t_data *data, char *cmd)
 {
-    int orig_std_out;
-    int i;
-    char    *outfile;
+    int 	orig_std_out;
+    int 	i;
+	int		j;
+    char    **outfile;
     char    **split;
 
     orig_std_out = dup(STDOUT_FILENO);
     split = ft_split(cmd, ' ');
+	outfile = ft_calloc(sizeof(char *), len_tab(split));
     i = 0;
-    while (split[i])
-        i++;
-    outfile = split[i - 1];
+	j = 0; 
+    while (split[i] && split[i + 1])
+	{
+		if (ft_strcmp(split[i], ">>") == 0)
+			outfile[j++] = ft_strdup(split[i + 1]);
+		i++;
+	}
     creat_doc2(outfile);
     clean_and_resend2(data, split);
     if (dup2(orig_std_out, STDOUT_FILENO) == -1) 

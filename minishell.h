@@ -106,5 +106,6 @@ int 	check_shlvl(t_data *data);
 void    reduce_shlvl(t_data *data);
 char	*special_case_2(char *shlvl);
 char	*special_case_3(int	shlvl);
+int		len_tab(char **tab);
 
 #endif

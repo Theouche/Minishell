@@ -13,7 +13,7 @@
 #include "minishell.h"
 #include <unistd.h>
 
-char	*special_case_3(int	shlvl)
+char	*special_case_3(int shlvl)
 {
 	char	*new_shlvl;
 	char	*num;

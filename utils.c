@@ -147,7 +147,7 @@ int	check_only_space(char *str)
 	return (1);
 }
 
-int		red_not_ok(char *cmd, char c)
+int	red_not_ok(char *cmd, char c)
 {
 	char	**split;
 	int		len;

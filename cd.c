@@ -49,7 +49,6 @@ int	apply_cd(t_data *data, char **dir)
 	else if (chdir(dir[1]) == -1)
 		ft_printf("cd: no such file or directory: %s\n", dir[1]);
 	change_pwd_env(data, old_pwd);
-	//ajout free
 	ft_free_split(dir);
 	free(old_cd);
 	free(old_pwd);

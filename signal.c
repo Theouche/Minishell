@@ -25,7 +25,6 @@ void	sigint_handler(int signal)
 	{
 		ft_printf("\033[2D  ");
 		ft_printf("\033[2D");
-
 	}
 }
 

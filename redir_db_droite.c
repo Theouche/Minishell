@@ -23,12 +23,12 @@ void	ft_init_bis(t_data *data, t_data *bis, char *new_cmd)
 
 void	clean_and_resend(t_data *data, char **split)
 {
-	int	i;
+	int		i;
 	char	*new_cmd;
 	t_data	*redir;
 
 	if (ft_strcmp(split[0], ">>") == 0)
-        return ;
+		return ;
 	new_cmd = malloc(1 * sizeof(char));
 	new_cmd[0] = 0;
 	i = 0;
@@ -37,20 +37,13 @@ void	clean_and_resend(t_data *data, char **split)
 	{
 		new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
 		if (split[i + 1][0] != '>')
-		{
-			//printf("############################ici###################\n");
 			new_cmd = add_space(new_cmd);
-			//new_cmd = ft_strjoin_and_free(new_cmd, " ");
-			//printf("############################probleme###################\n");
-		}
 		i++;
 	}
-	//printf("##### la nouvelle commande est : %s\n", new_cmd);
 	if (new_cmd)
 	{
 		ft_init_bis(data, redir, new_cmd);
 		begin_cmd(redir, new_cmd);
-		//ajouter fct pour free la structure !
 	}
 	end_prog(redir, new_cmd);
 }
@@ -99,13 +92,11 @@ void	ft_redir_double_droite(t_data *data, char *cmd)
 	}
 	creat_doc(outfile);
 	clean_and_resend(data, split);
-	if (dup2(orig_std_out, STDOUT_FILENO) == -1) 
+	if (dup2(orig_std_out, STDOUT_FILENO) == -1)
 	{
 		perror("Erreur lors de la restauration de la sortie standard");
 		exit(1);
 	}
-	//printf("################## ok7\n");
 	ft_free_split(split);
-	//printf("################## ok8\n");
 	close(orig_std_out);
 }

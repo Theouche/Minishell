@@ -14,7 +14,7 @@
 
 char	*add_space(char *cmd)
 {
-	int	i;
+	int		i;
 	char	*cmd_ws;
 
 	i = ft_strlen(cmd);
@@ -62,27 +62,22 @@ char	*ft_strjoin_and_free(char *s1, char *s2)
 
 int	ft_strchr_dbred(char *cmd, char chev)
 {
-	int	i;
+	int		i;
 	char	q;
 
 	i = 0;
 	while (cmd[i])
 	{
-		//printf(" #### vison ++ rech, le caract vaut %c de la phrase %s dans le tour %d\n", cmd[i], cmd, i);
 		if (cmd[i] == 34 || cmd[i] == 39)
 		{
 			q = cmd[i++];
-			//printf("#### quote trouve et vaut %c\n", q);
 			while (cmd[i] != q)
 				i++;
 		}
 		if (cmd[i] && cmd[i + 1])
 		{
 			if (cmd[i] == chev && cmd[i + 1] == chev)
-			{
-				//printf("############# >> trouve######\n");
 				return (1);
-			}
 			i++;
 		}
 		else
@@ -93,7 +88,7 @@ int	ft_strchr_dbred(char *cmd, char chev)
 
 int	ft_strchr_red(char *cmd, char chev)
 {
-	int	i;
+	int		i;
 	char	q;
 
 	i = 0;
@@ -103,7 +98,7 @@ int	ft_strchr_red(char *cmd, char chev)
 		{
 			q = cmd[i++];
 			while (cmd[i] != q)
-				 i++;
+				i++;
 		}
 		if (cmd[i])
 		{

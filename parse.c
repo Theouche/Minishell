@@ -6,7 +6,7 @@
 /*   By: tlorne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:27:59 by tlorne            #+#    #+#             */
-/*   Updated: 2023/08/31 10:52:33 by tlorne           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:51:34 by leudelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,9 @@ void	get_cmd(char **cmd_split, t_list **lst_cmd)
 
 void	print_cmd(t_list *lst_cmd)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	ft_printf("debut verif\n");
 	while (lst_cmd)
 	{
@@ -113,9 +115,10 @@ void	print_cmd(t_list *lst_cmd)
 void	ft_parse(char *prompt, t_list **lst_cmd)
 {
 	char	**cmd_split;
+	int		i;
 
 	cmd_split = ft_split(prompt, 32);
-	int i = 0;
+	i = 0;
 	while (cmd_split[i])
 		ft_printf("%s\n", cmd_split[i++]);
 	ft_printf("debut cmd\n");

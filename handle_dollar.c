@@ -15,7 +15,7 @@
 char	*add_char(char *str, char c)
 {
 	char	*new_str;
-	int	i;
+	int		i;
 
 	new_str = malloc(sizeof(char) * (ft_strlen(str) + 2));
 	i = 0;
@@ -32,9 +32,9 @@ char	*add_char(char *str, char c)
 
 char	*ft_get_env(t_data *data, char *sch)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	int		k;
 	char	*find;
 
 	i = 0;
@@ -59,8 +59,8 @@ char	*replace_dol(t_data *data, char *str)
 {
 	char	*ret;
 	char	*env;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	ret = malloc(sizeof(char) * ft_strlen(str));
 	i = 0;
@@ -93,7 +93,7 @@ char	*replace_dol(t_data *data, char *str)
 char	*special_case(t_data *data, char *str)
 {
 	char	*ret;
-	int	i;
+	int		i;
 
 	ret = malloc(sizeof(char) * ft_strlen(str));
 	i = 0;
@@ -121,7 +121,7 @@ char	*special_case(t_data *data, char *str)
 
 int	is_dollar(char *str)
 {
-	int	i;
+	int		i;
 	char	fq;
 
 	i = 0;

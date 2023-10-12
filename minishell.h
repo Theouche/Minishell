@@ -73,6 +73,7 @@ int     apply_cd(t_data *data, char **env);
 int		apply_export(t_data *data, char **cmd);
 int 	apply_unset(t_data *data, char **cmd);
 void	do_export_no_name(t_data *data, char *exp);
+void	do_export(t_data *data, char *exp);
 void    no_builtin(t_data *data, char **env);
 char    *ft_remove_first_space(char *cmd);
 int     ft_strchr_red(char *cmd, char chev);
@@ -100,5 +101,10 @@ int		all_com_ok(char **cmd);
 void	end_turn(t_data *data, char *prompt);
 void	end_prog(t_data *data, char *prompt);
 void	no_env(t_data *data);
+void	special_case_1(t_data *data, char **split);
+int 	check_shlvl(t_data *data);
+void    reduce_shlvl(t_data *data);
+char	*special_case_2(char *shlvl);
+char	*special_case_3(int	shlvl);
 
 #endif

@@ -97,16 +97,25 @@ int	main(int argc, char **argv, char **env)
 				if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
 				{
 					// faudra probablement free des trucs !!
-					end_prog(data, prompt);
-					break ;
+					//printf("#######le suivi vaut : %d\n", check_shlvl(data));
+					if (check_shlvl(data) == 1 || check_shlvl(data) == 0)
+					{
+						end_prog(data, prompt);
+						break ;
+					}
+					else
+						reduce_shlvl(data);
 				}
 				//printf("la premiere comm est :%s\n",data->cmd[0]);
-				if (data->cmd[0])
+				else
 				{
-					if (data->num_pip >= 1)
-						forpipe(data->cmd, data);
-					else
-						begin_cmd(data, data->cmd[0]);
+					if (data->cmd[0])
+					{
+						if (data->num_pip >= 1)
+							forpipe(data->cmd, data);
+						else
+							begin_cmd(data, data->cmd[0]);
+					}
 				}
 			}
 			end_turn(data, prompt);

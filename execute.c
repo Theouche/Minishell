@@ -74,7 +74,10 @@ void	execute_cmd(t_data *data, char *cmd)
 	if (!is_builtin(data, cmd))
 	{
 		split = ft_split(cmd, ' ');
-		checkcmd(split, data);
+		if (ft_strcmp(split[0], "./minishell") == 0)
+			special_case_1(data, split);
+		else
+			checkcmd(split, data);
 		ft_free_split(split);
 		return ;
 	}

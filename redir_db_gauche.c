@@ -48,11 +48,11 @@ void    do_until_delim(t_data *data, char *comm, char *delim)
 				//printf("#########fin init donc deb exec com\n");
 				begin_cmd(redir, finalcmd);
 				//printf("####fin begin cmd\n");
-				unlink("temp.txt");
 				free(finalcmd);
 			}
 			else
 				free(comm);
+            unlink("temp.txt");
             end_prog(redir, line);
             //free(line);
             //ajouter fct pour free la structure !

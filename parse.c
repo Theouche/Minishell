@@ -18,116 +18,6 @@ int	check_word(char *word)
 		return (1);
 	return (0);
 }
-/*
-char	*ft_strjoin_nfree(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	*str;
-
-	//printf("ok4\n");
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	k = 0;
-	printf("ok 3 \n");
-	str = malloc(sizeof(char) * (i + j + 1));
-	if (str == 0)
-		return (NULL);
-	while (k < i)
-	{
-		str[k] = s1[k];
-		k++;
-	}
-	k = 0;
-	while (k < j)
-	{
-		str[i + k] = s2[k];
-		k++;
-	}
-	str[i + j] = 0;
-	free(s1);
-	//free(s2);
-	return (str);
-}
-
-char	*add_spe(char *cmd_split)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(cmd_split) +1));
-	while (cmd_split[i])
-	{
-		str[i] = cmd_split[i];
-		i++;
-	}
-	str[i] = 0;
-	return (str);
-
-}
-
-char	**get_cmd(char **cmd_split)
-{
-	char	**lst_cmd;
-	int	i;
-	int	j;
-
-	i = 0;
-	while (cmd_split[i])
-		i++;
-	lst_cmd = malloc(sizeof(char *) * i);
-	i = 0;
-	j = 0;
-	//printf("debut recup\n");
-	while (cmd_split[i])
-	{
-		//printf("tour num %d \n", j);
-		lst_cmd[j] = malloc(sizeof(char) * 1);
-		lst_cmd[j] = 0;
-		while (cmd_split[i] && cmd_split[i][0] != 60 && cmd_split[i][0] != 62 && cmd_split[i][0] != 124)
-                {
-			//printf("ok \n");
-                        lst_cmd[j] = ft_strjoin_nfree(lst_cmd[j], cmd_split[i]);
-                        lst_cmd[j] = ft_strjoin_nfree(lst_cmd[j], " ");
-                        i++;
-		}
-		//printf("ok 2\n");
-		if (cmd_split[i] && cmd_split[i][0] == 124)
-		{
-			//lst_cmd[j] = ft_strjoin_nfree(lst_cmd[j], "pipe");
-			lst_cmd[++j] = add_spe(cmd_split[i]);
-			//lst_cmd[j] = malloc(sizeof(char) * 2);
-			//lst_cmd[j][0] = 124;
-			//lst_cmd[j][1] = 0;
-			i++;
-		}
-		else if (cmd_split[i] && (cmd_split[i][0] == 60 || cmd_split[i][0] == 62))
-		{
-			//lst_cmd[j] = ft_strjoin_nfree(lst_cmd[j], "red");
-			lst_cmd[++j] = add_spe(cmd_split[i]);
-			i++;
-		}
-		else
-		{
-			lst_cmd[j] = ft_strjoin_nfree(lst_cmd[j], "end");
-		}
-		j++;
-	}
-	lst_cmd[j] = 0;
-	return (lst_cmd);
-}
-
-void	print_cmd(char **list_cmd)
-{
-	int	i;
-
-	i = 0;
-	while (list_cmd[i])
-		printf("%s\n", list_cmd[i++]);
-}
-*/
 
 void	get_cmd(char **cmd_split, t_list **lst_cmd)
 {
@@ -141,59 +31,53 @@ void	get_cmd(char **cmd_split, t_list **lst_cmd)
 	ft = 1;
 	cmd = malloc(sizeof(char) * 1);
 	cmd[0] = 0;
-	//lst_cmd = malloc(sizeof(t_list) * 1);
 	temp = malloc(sizeof(t_list) * 1);
-	printf("debut cmd\n");
+	ft_printf("debut cmd\n");
 	while (cmd_split[i])
 	{
-		//cmd = malloc(sizeof(char) * 1);
-		printf("%d\n", i);
+		ft_printf("%d\n", i);
 		while (cmd_split[i] && cmd_split[i][0] != 60 && cmd_split[i][0] != 62 && cmd_split[i][0] != 124)
 		{
 			cmd = ft_strjoin(cmd, cmd_split[i]);
 			cmd = ft_strjoin(cmd, " ");
 			i++;
-			printf("%s\n", cmd);
+			ft_printf("%s\n", cmd);
 		}
-		printf("%s\n", cmd_split[i]);
+		ft_printf("%s\n", cmd_split[i]);
 		if (cmd_split[i] && cmd_split[i][0] == 124)
 		{
-			//write(1,"debut add list\n", 15);
-			printf("%s\n", cmd);
+			ft_printf("%s\n", cmd);
 			temp = ft_lstnew(cmd, 1, 0);
-			printf("check temp avec pip!!!!!!!!!!\n");
-			printf("%s\n", temp->cmd);
-			printf("%d\n", temp->pipe);
-			printf("%d\n", temp->redir);
-			//ft_lstadd_back(lst_cmd, ft_lstnew(cmd, 1, 0));
+			ft_printf("check temp avec pip!!!!!!!!!!\n");
+			ft_printf("%s\n", temp->cmd);
+			ft_printf("%d\n", temp->pipe);
+			ft_printf("%d\n", temp->redir);
 			i++;
-			printf("avec pipe\n");
+			ft_printf("avec pipe\n");
 		}
 		else if (cmd_split[i] && (cmd_split[i][0] == 60 || cmd_split[i][0] == 62))
 		{
-			//ft_lstadd_back(lst_cmd, ft_lstnew(cmd, 0, 1));
-			printf("%s\n", cmd);
+			ft_printf("%s\n", cmd);
 			temp = ft_lstnew(cmd, 0, 1);
-			printf("check temp avec r!!!!!!!!!!\n");
-			printf("%s\n", temp->cmd);
-			printf("%d\n", temp->pipe);
-			printf("%d\n", temp->redir);
+			ft_printf("check temp avec r!!!!!!!!!!\n");
+			ft_printf("%s\n", temp->cmd);
+			ft_printf("%d\n", temp->pipe);
+			ft_printf("%d\n", temp->redir);
 			i++;
-			printf("avec redirection\n");
+			ft_printf("avec redirection\n");
 		}
 		else
 		{
-			//ft_lstadd_back(lst_cmd, ft_lstnew(cmd, 0, 0));
-			printf("%s\n", cmd);
+			ft_printf("%s\n", cmd);
 			temp = ft_lstnew(cmd, 0, 0);
-			printf("check temp no spe!!!!!!!!!!\n");
-			printf("%s\n", temp->cmd);
-			printf("%d\n", temp->pipe);
-			printf("%d\n", temp->redir);
-			printf("no spe\n");
+			ft_printf("check temp no spe!!!!!!!!!!\n");
+			ft_printf("%s\n", temp->cmd);
+			ft_printf("%d\n", temp->pipe);
+			ft_printf("%d\n", temp->redir);
+			ft_printf("no spe\n");
 		}
 		cmd[0] = 0;
-		printf("add back\n");
+		ft_printf("add back\n");
 		print_cmd(*lst_cmd);
 		if (ft == 1)
 		{
@@ -202,30 +86,11 @@ void	get_cmd(char **cmd_split, t_list **lst_cmd)
 		}
 		else
 		{
-			//ft_lstadd_back(lst_cmd, temp);
 			last_elem = ft_lstlast(*lst_cmd);
 			last_elem->next = temp;
 		}
-		printf("add back verif apres\n");
+		ft_printf("add back verif apres\n");
 		print_cmd(*lst_cmd);
-		/*if (!*lst_cmd)
-		{
-			printf("ini list\n");
-			*lst_cmd = temp;
-			//printf("%s\n", lst_cmd->cmd);
-                	//printf("%d\n", lst_cmd->pipe);
-                	//printf("%d\n", lst_cmd->redir);
-			//ft_lstadd_back(lst_cmd, temp);
-		}
-		else
-		{
-			printf("ajout lst avec fct\n");
-			//lst_cmd->next = temp;
-			//lst_cmd = lst_cmd->next;
-			ft_lstadd_back(lst_cmd, temp);
-		}*/
-		//free(cmd);
-		//i++;
 	}
 	free(cmd);
 }
@@ -233,13 +98,13 @@ void	get_cmd(char **cmd_split, t_list **lst_cmd)
 void	print_cmd(t_list *lst_cmd)
 {
 	int	i = 0;
-	printf("debut verif\n");
+	ft_printf("debut verif\n");
 	while (lst_cmd)
 	{
-		printf("%d\n", i);
-		printf("%s\n", lst_cmd->cmd);
-		printf("%d\n", lst_cmd->pipe);
-		printf("%d\n", lst_cmd->redir);
+		ft_printf("%d\n", i);
+		ft_printf("%s\n", lst_cmd->cmd);
+		ft_printf("%d\n", lst_cmd->pipe);
+		ft_printf("%d\n", lst_cmd->redir);
 		lst_cmd = lst_cmd->next;
 		i++;
 	}
@@ -248,34 +113,13 @@ void	print_cmd(t_list *lst_cmd)
 void	ft_parse(char *prompt, t_list **lst_cmd)
 {
 	char	**cmd_split;
-	//char	**list_cmd;
-	//int	i;
-	//char	*pathway;
-	//void(data);
 
 	cmd_split = ft_split(prompt, 32);
 	int i = 0;
 	while (cmd_split[i])
-		printf("%s\n", cmd_split[i++]);
-	//lst_cmd = malloc(sizeof(t_list) * 1);
-	printf("debut cmd\n");
-	//list_cmd = get_cmd(cmd_split, lst_cmd);
+		ft_printf("%s\n", cmd_split[i++]);
+	ft_printf("debut cmd\n");
 	get_cmd(cmd_split, lst_cmd);
-	printf("fin cmd\n");
-	//print_cmd(list_cmd);
-	printf("fin verif\n");
-	//return (list_cmd);
-	//print_cmd(*lst_cmd);
-	/*i = 0;
-	while (cmd_split[i])
-	{
-		if (check_word(cmd_split[i]) == 1 && cmd_split[i + 1])
-		{
-			i += ft_echo(cmd_split, i);
-		}
-		i++;
-	}*/
-	//	ft_printf("%s\n", split[i++]);
-	//pathway = ft_strjoin("/usr/bin/", cmd_split[0]);
-	//execve(pathway, cmd_split, NULL);
+	ft_printf("fin cmd\n");
+	ft_printf("fin verif\n");
 }

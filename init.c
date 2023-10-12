@@ -44,7 +44,6 @@ void	ft_getpath(t_data *data)
 	i = 0;
 	while (data->cpyenv[i] && strncmp(data->cpyenv[i], "PATH", 4) != 0)
 		i++;
-	//data->path = ft_strdup(data->cpyenv[i]);
 	if (data->cpyenv[i] && strncmp(data->cpyenv[i], "PATH", 4) == 0)
 	{
 		data->path = malloc(sizeof(char) * (ft_strlen(data->cpyenv[i]) + 1));
@@ -58,7 +57,6 @@ void	ft_getpath(t_data *data)
 		}
 		data->path[k] = 0;
 	}
-	//printf("Path vaut : %s\n", data->path);
 }
 
 void	ft_gethome(t_data *data)

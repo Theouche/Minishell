@@ -12,25 +12,12 @@
 
 #include "minishell.h"
 
-int     apply_pwd(t_data *data)
+int	apply_pwd(t_data *data)
 {
-	//int	i;
-	int	j;
+	int		j;
 	char	*pwd;
 
-
 	(void)data;
-	//i = 0;
-	//while (strncmp(env[i], "PWD", 3) != 0)
-	//	i++;
-	/*j = 4;
-	while (env[i][j])
-	{
-		ft_printf("%c", env[i][j]);
-		j++;	
-	}*/
-
-	// 2eme forme.
 	pwd = getcwd(NULL, 0);
 	j = -1;
 	while (pwd[++j])

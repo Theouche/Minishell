@@ -12,19 +12,6 @@
 
 #include "minishell.h"
 
-/*void	no_builtin(t_data *data, char **env)
-{
-	char	*clean_cmd;
-	
-	(void)env;
-	if (is_quote(data->fsplit[0]) == 1)
-		clean_cmd = remove_quote(data->fsplit[0]);
-	if (checkcmd(data->fsplit, data) == 1)
-		return ;
-	else
-		return ;
-}*/
-
 void	no_env(t_data *data)
 {
 	char	*new_cd;

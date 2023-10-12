@@ -117,13 +117,10 @@ void	checkcmd(char **cmd, t_data *data)
 	if (pid == 0)
 	{
 		execve(path, cmd, data->cpyenv);
-		//printf("ok\n");
-		//free(path);
 	}
 	else if (pid > 0)
 	{
 		waitpid(pid, &data->status, 0);
-		//printf("ok\n");
 		free(path);
 		return ;
 	}
@@ -132,7 +129,6 @@ void	checkcmd(char **cmd, t_data *data)
 		perror("fork could not get created :(");
 		exit (1);
 	}
-	//free(path);
 	exit(127);
 }
 

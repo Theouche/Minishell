@@ -18,8 +18,6 @@ char	*create_prompt(char *name, char *split)
 	char	*temp;
 
 	temp = ft_strjoin(name, split);
-	//temp = ft_strjoin(temp, " > ");
-	//temp = ft_strjoin(temp, WHITE);
 	temp = ft_strjoin_and_free2(temp, " > ");
 	temp = ft_strjoin_and_free2(temp, WHITE);
 	prompt = readline(temp);
@@ -34,7 +32,7 @@ char	*ft_readline(void)
 	char	*name;
 	char	*path;
 	char	*prompt;
-	int	i;
+	int		i;
 
 	i = 0;
 	name = ft_strjoin(NAME, VIOLET);
@@ -60,10 +58,8 @@ char	*ft_readline(void)
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
-	//char	**lst_cmd;
 	char	*prompt;
 	int		not;
-	//t_list	*lst_cmd;
 
 	if (argc != 1 || argv[1])
 	{
@@ -71,9 +67,7 @@ int	main(int argc, char **argv, char **env)
 		return (0);
 	}
 	data = malloc(sizeof(t_data) * 1);
-	//lst_cmd = malloc(sizeof(t_list) * 1);
 	ft_init(data, env);
-	//add_history("echo $USER");
 	set_signal();
 	while (42)
 	{
@@ -81,8 +75,6 @@ int	main(int argc, char **argv, char **env)
 		prompt = ft_readline();
 		if (!prompt)
 			break ;
-		//ft_printf("le prompte est : %s\n", prompt);
-		//check_prompt(prompt);   A faire !!!!!!
 		add_history("ls -la | grep drwxr | wc");
 		add_history(prompt);
 		data->redir = 0;
@@ -91,13 +83,8 @@ int	main(int argc, char **argv, char **env)
 			not = 1;
 			if (ft_check_and_parse(data, prompt) == 1)
 			{
-				//printf("les commandes sont :\n"); //plus utile ?
-				//check_tab(data->cmd); // plus utile ?
-				//printf("\n\n"); // plus utile ?
-				if (ft_strcmp(data->cmd[0], "exit") == 0) // plus utile ?
+				if (ft_strcmp(data->cmd[0], "exit") == 0)
 				{
-					// faudra probablement free des trucs !!
-					//printf("#######le suivi vaut : %d\n", check_shlvl(data));
 					if (check_shlvl(data) == 1 || check_shlvl(data) == 0)
 					{
 						end_prog(data, prompt);
@@ -106,7 +93,6 @@ int	main(int argc, char **argv, char **env)
 					else
 						reduce_shlvl(data);
 				}
-				//printf("la premiere comm est :%s\n",data->cmd[0]);
 				else
 				{
 					if (data->cmd[0])
@@ -122,8 +108,5 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (not == 0)
 			free(prompt);
-		//end_turn(data, prompt);
-		//execute_cmd(lst_cmd, env);
 	}
-	//ajouter fct pour free la structure !
 }

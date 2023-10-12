@@ -30,12 +30,10 @@ char	**first_split(char *p, char c)
 		{
 			if (p[i] == 34 || p[i] == 39)
 			{
-				//printf("quote trouve %c a l'index %d\n", p[i], i);
 				q = p[i];
 				i++;
 				while (p[i] != q)
 					i++;
-				//printf("on est a l'index %d, donc au car %c \n", i, p[i]);
 			}
 			i++;
 		}
@@ -105,23 +103,15 @@ int	get_cmd(t_data *data, int i)
 {
 	char	*tmp;
 
-	//tmp = ft_split(data->fsplit[i], ' ');
-	//printf("ok\n");
-	//faire un remove space ? et tout copier dans cmd ?
-	//printf("fsplit vaut :%s\n", data->fsplit[i]);
 	tmp = ft_remove_first_space(data->fsplit[i]);
-	//old version
-	//printf("tmp vaut :%s\n", tmp);
 	if (tmp)
 		data->cmd[i] = ft_strdup(tmp);
 	else
 	{
-		//free(tmp);
 		ft_free_split(data->fsplit);
 		ft_free_split(data->cmd);
 		return (0);
 	}
-	//printf("%s\n", data->cmd[i]);
 	free(tmp);
 	return (1);
 }
@@ -131,35 +121,26 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 	int	i;
 
 	i = 0;
-	//printf("%d\n", check_quote(prompt));
 	if (!check_quote(prompt))
 	{
 		ft_printf("au moins une quote n'est pas ferme\n");
-		return (0) ;
+		return (0);
 	}
-	//printf("le prompt n'a que des spaces ? %d\n", check_only_space(prompt));
 	if (check_only_space(prompt) == 1)
 		return (0);
 	data->prompt = handle_dollar(data, prompt);
-	//printf("##### data->prompt vaut : %s\n\n", data->prompt);
 	data->fsplit = first_split(data->prompt, '|');
 	get_num_pipe(data);
 	data->cmd = ft_calloc(sizeof(char *), (data->num_pip) + 2);
 	data->cmd[data->num_pip + 1] = 0;
 	while (data->fsplit[i])
 	{
-		//printf("ok %d\n", i);
 		if (!get_cmd(data, i))
-			return (0) ;
+			return (0);
 		i++;
 	}
 	if (all_com_ok(data->cmd) == 1)
 		return (1);
 	else
 		return (0);
-	//printf("les differentes commandes sont : \n");
-	//check_tab(data->cmd);
-	//return (1);
-	//begin_cmd(data, env);
-	//printf("fin ?\n");
 }

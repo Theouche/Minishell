@@ -75,22 +75,13 @@ void	ft_free_split(char **tab)
 	int	i;
 
 	if (!tab)
-		printf("------- NOT TQB\n");
-
-	//printf("\n\n\n\n\nqvqnt whilllllllllllllllllllll\n");
+		ft_printf("------- NOT TAB\n");
 	i = 0;
-	//printf("\n\n\ndebut check\n");
-	//check_tab(tab);
-	//printf("\n\n\ndebut free\n");
 	while (tab[i])
 	{
-	//	printf("free i=%d\n", i);
-		//printf("free i=%d : %s\n", i, tab[i]);
 		free(tab[i]);
-		//printf("ok\n");
 		i++;
 	}
-	//printf("apres whilllllllllllllllllllll\n\n\n\n\n");
 	free(tab);
 }
 
@@ -115,7 +106,7 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	while(s1[i] && s2[i])
+	while (s1[i] && s2[i])
 	{
 		if (s1[i] == s2[i])
 			i++;
@@ -128,8 +119,8 @@ int	ft_strcmp(char *s1, char *s2)
 char	*ft_remove_first_space(char *cmd)
 {
 	char	*dup;
-	int	i;
-	int	deb;
+	int		i;
+	int		deb;
 
 	i = 0;
 	deb = 0;
@@ -139,11 +130,10 @@ char	*ft_remove_first_space(char *cmd)
 	while (cmd[i])
 		dup[deb++] = cmd[i++];
 	dup[deb] = 0;
-	//free(cmd);
 	return (dup);
 }
 
-int		check_only_space(char *str)
+int	check_only_space(char *str)
 {
 	int	i;
 
@@ -167,23 +157,21 @@ int		red_not_ok(char *cmd, char c)
 	len = 0;
 	while (split[len])
 		len++;
-	//if (len == 1)
-	//	return (1);
 	i = 0;
 	while (split[i][0] != c)
 		i++;
 	if (i == len - 1 || len == 1)
 	{
 		ft_free_split(split);
-		printf("bash: syntax error near"); 
-		printf(" unexpected token `newline'\n");
+		ft_printf("bash: syntax error near");
+		ft_printf(" unexpected token `newline'\n");
 		return (1);
 	}
 	ft_free_split(split);
 	return (0);
 }
 
-int	all_com_ok(char **cmd)	
+int	all_com_ok(char **cmd)
 {
 	int		i;
 	char	c;
@@ -193,8 +181,8 @@ int	all_com_ok(char **cmd)
 	{
 		if (check_only_space(cmd[i]) == 1)
 		{
-			printf("bash: syntax error near"); 
-			printf(" unexpected token `|'\n");
+			ft_printf("bash: syntax error near");
+			ft_printf(" unexpected token `|'\n");
 			return (0);
 		}
 		if (ft_strchr_red(cmd[i], '<') == 1)

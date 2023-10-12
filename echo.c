@@ -94,7 +94,6 @@ int	apply_echo(char *cmd, t_data *data)
 
 	i = 4;
 	arg = 0;
-	//ft_printf("debut fonction echo \n");
 	if (is_quote_echo(cmd))
 	{
 		echo_w_q(cmd, data);

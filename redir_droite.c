@@ -24,12 +24,16 @@ void	clean_and_resend2(t_data *data, char **split)
 	new_cmd[0] = 0;
 	i = 0;
 	redir = ft_calloc(sizeof(t_data), 1);
-	while (split[i][0] != '>')
+	while (split[i])
 	{
-		new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
-		if (split[i + 1][0] != '>')
+		if (split[i][0] == '>' && split[i + 1])
+			i += 2;
+		else
+		{
+			new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
 			new_cmd = add_space(new_cmd);
-		i++;
+			i++;
+		}
 	}
 	if (new_cmd)
 	{
@@ -46,7 +50,7 @@ void	creat_doc2(char **outfile)
 
 	i = 0;
 	while ((i < len_tab(outfile) - 1) && outfile[i])
-		openopen(outfile[i++], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+		open(outfile[i++], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	new_fd_output = open(outfile[i], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	ft_free_split(outfile);
 	if (new_fd_output == -1)
@@ -77,7 +81,7 @@ void	ft_redir_droite(t_data *data, char *cmd)
 	j = 0;
 	while (split[i] && split[i + 1])
 	{
-		if (ft_strcmp(split[i], ">>") == 0)
+		if (ft_strcmp(split[i], ">") == 0)
 			outfile[j++] = ft_strdup(split[i + 1]);
 		i++;
 	}

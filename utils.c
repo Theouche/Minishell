@@ -150,22 +150,20 @@ int	check_only_space(char *str)
 int	red_not_ok(char *cmd, char c)
 {
 	char	**split;
-	int		len;
 	int		i;
 
-	split = ft_split(cmd, ' ');
-	len = 0;
-	while (split[len])
-		len++;
+	split = first_split(cmd, ' ');
 	i = 0;
-	while (split[i][0] != c)
-		i++;
-	if (i == len - 1 || len == 1)
+	while (split[i])
 	{
-		ft_free_split(split);
-		ft_printf("bash: syntax error near");
-		ft_printf(" unexpected token `newline'\n");
-		return (1);
+		if (split[i][0] == c && !split[i + 1])
+		{
+			ft_free_split(split);
+			ft_printf("bash: syntax error near");
+			ft_printf(" unexpected token `newline'\n");
+			return (1);
+		}
+		i++;
 	}
 	ft_free_split(split);
 	return (0);

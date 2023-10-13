@@ -33,12 +33,16 @@ void	clean_and_resend(t_data *data, char **split)
 	new_cmd[0] = 0;
 	i = 0;
 	redir = ft_calloc(sizeof(t_data), 1);
-	while (split[i][0] != '>')
+	while (split[i])
 	{
-		new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
-		if (split[i + 1][0] != '>')
+		if (split[i][0] == '>' && split[i + 1])
+			i += 2;
+		else
+		{
+			new_cmd = ft_strjoin_and_free2(new_cmd, split[i]);
 			new_cmd = add_space(new_cmd);
-		i++;
+			i++;
+		}
 	}
 	if (new_cmd)
 	{

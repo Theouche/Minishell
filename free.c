@@ -43,3 +43,43 @@ void	end_prog(t_data *data, char *prompt)
 		ft_free_split(data->cpyenv);
 	free(data);
 }
+
+int	is_a_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_end(t_data *data, char *prompt)
+{
+	char	**split;
+	int		ex;
+
+	if (ft_count_word(data->cmd[0], ' ') > 2)
+	{
+		end_turn(data, prompt);
+		ft_printf("exit: too many arguments\n");
+		return (1);
+	}
+	split = ft_split(data->cmd[0], ' ');
+	end_prog(data, prompt);
+	if (split[1])
+	{
+		ex = 2;
+		if (is_a_number(split[1]) == 1)
+			ex = ft_atoi(split[1]);
+		else
+			ft_printf("exit: numeric argument required\n");
+		ft_free_split(split);
+		exit(ex);
+	}
+	exit(0);
+}

@@ -12,12 +12,22 @@
 
 #include "minishell.h"
 
+int	advance(int i, char *p)
+{
+	char	q;
+
+	q = p[i];
+	i++;
+	while (p[i] != q)
+		i++;
+	return (i);
+}
+
 char	**first_split(char *p, char c)
 {
 	int		i;
 	int		j;
 	int		pos;
-	char	q;
 	char	**tab;
 
 	i = 0;
@@ -29,64 +39,16 @@ char	**first_split(char *p, char c)
 		while (p[i] != c && p[i])
 		{
 			if (p[i] == 34 || p[i] == 39)
-			{
-				q = p[i];
-				i++;
-				while (p[i] != q)
-					i++;
-			}
+				i = advance(i, p);
 			i++;
 		}
 		if (pos != i)
-		{
-			tab[j] = ft_strndup_ms(p + pos, i - pos);
-			j++;
-		}
+			tab[j++] = ft_strndup_ms(p + pos, i - pos);
 		if (p[i])
 			i++;
 	}
 	tab[j] = 0;
 	return (tab);
-}
-
-int	check_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 34)
-		{
-			i++;
-			while (str[i] && str[i] != 34)
-				i++;
-			if (str[i] == 0)
-				return (0);
-		}
-		if (str[i] == 39)
-		{
-			i++;
-			while (str[i] && str[i] != 39)
-				i++;
-			if (str[i] == 0)
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-void	check_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
 }
 
 void	get_num_pipe(t_data *data)

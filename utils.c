@@ -12,139 +12,11 @@
 
 #include "minishell.h"
 
-int	is_quote(char *cmd)
+int	ft_error_for_norm(void)
 {
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == 34 || cmd[i] == 39)
-			return (1);
-		i++;
-	}
+	ft_printf("bash: syntax error near");
+	ft_printf(" unexpected token `|'\n");
 	return (0);
-}
-
-char	*ft_strndup_ms(char *src, int n)
-{
-	char	*dest;
-	int		i;
-
-	i = 0;
-	while (src[i] && i < n)
-		i++;
-	dest = malloc(sizeof(char) * (i + 1));
-	if (!dest)
-		return (NULL);
-	i = 0;
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = 0;
-	return (dest);
-}
-
-size_t	ft_count_word_ms(char *str, char c)
-{
-	int		i;
-	size_t	count;
-	int		block;
-
-	count = 0;
-	block = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != c && block == 0)
-		{
-			block = 1;
-			count++;
-		}
-		else if (str[i] == c)
-			block = 0;
-		i++;
-	}
-	return (count);
-}
-
-void	ft_free_split(char **tab)
-{
-	int	i;
-
-	if (!tab)
-		ft_printf("------- NOT TAB\n");
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-char	*first_word(char *cmd)
-{
-	int		i;
-	char	*fw;
-
-	i = 0;
-	fw = malloc(sizeof(char) * 7);
-	while (ft_isalpha(cmd[i]))
-	{
-		fw[i] = cmd[i];
-		i++;
-	}
-	fw[i] = 0;
-	return (fw);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return (s1[i] - s2[i]);
-	}
-	return (s1[i] - s2[i]);
-}
-
-char	*ft_remove_first_space(char *cmd)
-{
-	char	*dup;
-	int		i;
-	int		deb;
-
-	i = 0;
-	deb = 0;
-	while (cmd[i] == ' ' || cmd[i] == '\t')
-		i++;
-	dup = malloc(ft_strlen(cmd) - i + 1 * sizeof(char));
-	while (cmd[i])
-		dup[deb++] = cmd[i++];
-	dup[deb] = 0;
-	return (dup);
-}
-
-int	check_only_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != 32 && str[i] != 9)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 int	red_not_ok(char *cmd, char c)
@@ -178,11 +50,7 @@ int	all_com_ok(char **cmd)
 	while (cmd[i])
 	{
 		if (check_only_space(cmd[i]) == 1)
-		{
-			ft_printf("bash: syntax error near");
-			ft_printf(" unexpected token `|'\n");
-			return (0);
-		}
+			return (ft_error_for_norm());
 		if (ft_strchr_red(cmd[i], '<') == 1)
 		{
 			c = '<';
@@ -198,4 +66,13 @@ int	all_com_ok(char **cmd)
 		i++;
 	}
 	return (1);
+}
+
+int	exitstatus(int status)
+{
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+		return (WTERMSIG(status));
+	return (status);
 }

@@ -40,6 +40,7 @@ typedef struct s_data
 	char	**fsplit;
 	char	**cmd;
 	char	*prompt;
+	char	*env_dol;
 	int		num_pip;
 	int		redir;
 	int		status;
@@ -98,7 +99,14 @@ int		check_shlvl(t_data *data);
 void	reduce_shlvl(t_data *data);
 char	*special_case_2(char *shlvl);
 char	*special_case_3(int shlvl);
-int		len_tab(char **tab);
 char	**first_split(char *p, char c);
+void	norm(t_data *data, t_data *redir, char *new_cmd);
+char	**remp_tab(char **split, char *tf);
+int		check_quote(char *str);
+char	*recupthepath(t_data *data, char *cmd);
+char	*add_char(char *str, char c);
+char	*ft_get_env(t_data *data, char *sch);
+int		is_dollar(char *str);
+int		check_end(t_data *data, char *prompt);
 
 #endif

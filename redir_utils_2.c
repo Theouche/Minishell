@@ -67,3 +67,30 @@ char	*ft_strjoin_and_free2(char *s1, char *s2)
 	str[i + j] = 0;
 	return (str);
 }
+
+void	norm(t_data *data, t_data *redir, char *new_cmd)
+{
+	if (new_cmd)
+	{
+		ft_init_bis(data, redir, new_cmd);
+		begin_cmd(redir, new_cmd);
+	}
+}
+
+char	**remp_tab(char **split, char *tf)
+{
+	char	**outfile;
+	int		i;
+	int		j;
+
+	outfile = ft_calloc(sizeof(char *), len_tab(split));
+	i = 0;
+	j = 0;
+	while (split[i] && split[i + 1])
+	{
+		if (ft_strcmp(split[i], tf) == 0)
+			outfile[j++] = ft_strdup(split[i + 1]);
+		i++;
+	}
+	return (outfile);
+}

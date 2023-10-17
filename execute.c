@@ -12,6 +12,21 @@
 
 #include "minishell.h"
 
+int	is_builtin_2(char **split, t_data *data)
+{
+	if (ft_strcmp(split[0], "export") == 0)
+		return (apply_export(data, split));
+	else if (ft_strcmp(split[0], "unset") == 0)
+		return (apply_unset(data, split));
+	else if (ft_strcmp(split[0], "cd") == 0)
+		return (apply_cd(data, split));
+	else
+	{
+		ft_free_split(split);
+		return (0);
+	}
+}
+
 int	is_builtin(t_data *data, char *cmd)
 {
 	char	**split;
@@ -32,17 +47,8 @@ int	is_builtin(t_data *data, char *cmd)
 		ft_free_split(split);
 		return (apply_env(data));
 	}
-	else if (ft_strcmp(split[0], "export") == 0)
-		return (apply_export(data, split));
-	else if (ft_strcmp(split[0], "unset") == 0)
-		return (apply_unset(data, split));
-	else if (ft_strcmp(split[0], "cd") == 0)
-		return (apply_cd(data, split));
 	else
-	{
-		ft_free_split(split);
-		return (0);
-	}
+		return (is_builtin_2(split, data));
 }
 
 void	execute_cmd(t_data *data, char *cmd)

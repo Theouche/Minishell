@@ -12,11 +12,27 @@
 
 #include "minishell.h"
 
+void	do_until_delim_2( char *comm, t_data *data, t_data *redir, char *line)
+{
+	char	*finalcmd;
+
+	if (comm[0])
+	{
+		finalcmd = ft_strjoin(comm, " < temp.txt");
+		ft_init_bis(data, redir, finalcmd);
+		begin_cmd(redir, finalcmd);
+		free(finalcmd);
+	}
+	else
+		free(comm);
+	unlink("temp.txt");
+	end_prog(redir, line);
+}
+
 void	do_until_delim(t_data *data, char *comm, char *delim)
 {
 	char	*line;
 	char	*tempcmd;
-	char	*finalcmd;
 	t_data	*redir;
 
 	line = readline("heredoc> ");
@@ -32,17 +48,7 @@ void	do_until_delim(t_data *data, char *comm, char *delim)
 		}
 		if (ft_strcmp(line, delim) == 0)
 		{
-			if (comm[0])
-			{
-				finalcmd = ft_strjoin(comm, " < temp.txt");
-				ft_init_bis(data, redir, finalcmd);
-				begin_cmd(redir, finalcmd);
-				free(finalcmd);
-			}
-			else
-				free(comm);
-			unlink("temp.txt");
-			end_prog(redir, line);
+			do_until_delim_2(comm, data, redir, line);
 			break ;
 		}
 		free(line);

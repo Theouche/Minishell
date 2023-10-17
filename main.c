@@ -55,6 +55,44 @@ char	*ft_readline(void)
 	return (prompt);
 }
 
+void	follow_up_2(t_data *data)
+{
+	if (data->cmd[0])
+	{
+		if (data->num_pip >= 1)
+			forpipe(data->cmd, data);
+		else
+			begin_cmd(data, data->cmd[0]);
+	}
+}
+
+int	follow_up(t_data *data, char *prompt, int not)
+{
+	if (prompt[0] != 0)
+	{
+		not = 1;
+		if (ft_check_and_parse(data, prompt) == 1)
+		{
+			if (ft_strncmp(data->cmd[0], "exit", 4) == 0)
+			{
+				if (check_shlvl(data) == 1 || check_shlvl(data) == 0)
+				{
+					//end_prog(data, prompt);
+					return (check_end(data, prompt));
+				}
+				else
+					reduce_shlvl(data);
+			}
+			else
+				follow_up_2(data);
+		}
+		end_turn(data, prompt);
+	}
+	if (not == 0)
+		free(prompt);
+	return (1);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
@@ -66,7 +104,7 @@ int	main(int argc, char **argv, char **env)
 		ft_printf("This program does not accept arguments\n");
 		return (0);
 	}
-	data = malloc(sizeof(t_data) * 1);
+	data = ft_calloc(sizeof(t_data), 1);
 	ft_init(data, env);
 	set_signal();
 	while (42)
@@ -75,38 +113,9 @@ int	main(int argc, char **argv, char **env)
 		prompt = ft_readline();
 		if (!prompt)
 			break ;
-		add_history("ls -la | grep drwxr | wc");
 		add_history(prompt);
-		data->redir = 0;
-		if (prompt[0] != 0)
-		{
-			not = 1;
-			if (ft_check_and_parse(data, prompt) == 1)
-			{
-				if (ft_strcmp(data->cmd[0], "exit") == 0)
-				{
-					if (check_shlvl(data) == 1 || check_shlvl(data) == 0)
-					{
-						end_prog(data, prompt);
-						break ;
-					}
-					else
-						reduce_shlvl(data);
-				}
-				else
-				{
-					if (data->cmd[0])
-					{
-						if (data->num_pip >= 1)
-							forpipe(data->cmd, data);
-						else
-							begin_cmd(data, data->cmd[0]);
-					}
-				}
-			}
-			end_turn(data, prompt);
-		}
-		if (not == 0)
-			free(prompt);
+		if (follow_up(data, prompt, not) == 0)
+			break ;
 	}
+	return (0);
 }

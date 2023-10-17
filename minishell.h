@@ -108,5 +108,6 @@ char	*add_char(char *str, char c);
 char	*ft_get_env(t_data *data, char *sch);
 int		is_dollar(char *str);
 int		check_end(t_data *data, char *prompt);
+char	give_fq(char fq, char c);
 
 #endif

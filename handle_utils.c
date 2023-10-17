@@ -85,10 +85,8 @@ int	is_dollar(char *str)
 	fq = 0;
 	while (str[i])
 	{
-		if ((str[i] == 34 || str[i] == 39) && fq != 0)
-			fq = 0;
-		else if (str[i] == 34 || str[i] == 39)
-			fq = str[i];
+		if (str[i] == 34 || str[i] == 39)
+			fq = give_fq(fq, str[i]);
 		else
 		{
 			if (str[i] == 36 && (fq == 0 || fq == 34)

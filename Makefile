@@ -17,7 +17,7 @@ NAME = minishell
 SRC = main.c init.c no_env.c execute.c ft_parse_2.c handle_dollar.c ft_execute2.c \
 		echo.c pwd.c env.c cd.c export.c export2.c unset.c \
 		redir_db_droite.c redir_droite.c redir_gauche.c redir_db_gauche.c \
-		utils.c redir_utils.c redir_utils_2.c handle_utils.c shlvl.c utils_2.c utils_3.c ft_execute2_utils.c \
+		utils.c redir_utils.c redir_utils_2.c handle_utils.c handle_utils_2.c shlvl.c utils_2.c utils_3.c ft_execute2_utils.c \
 		signal.c \
 		ft_pipe.c ft_pipe_2.c \
 		free.c

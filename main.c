@@ -77,7 +77,6 @@ int	follow_up(t_data *data, char *prompt, int not)
 			{
 				if (check_shlvl(data) == 1 || check_shlvl(data) == 0)
 				{
-					//end_prog(data, prompt);
 					return (check_end(data, prompt));
 				}
 				else

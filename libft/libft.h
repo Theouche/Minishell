@@ -86,5 +86,6 @@ char	*ft_clean_buffer(char *buffer);
 char	*ft_line(char *buffer);
 char	*ft_join_and_free(char *buffer, char *temp);
 char	*ad_read_uend(int fd, char *buffer);
+size_t	ft_count_word(const char *str, char c);
 
 #endif

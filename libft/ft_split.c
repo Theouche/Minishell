@@ -33,7 +33,7 @@ static char	*ft_strndup(const char *src, int n)
 	return (dest);
 }
 
-static size_t	ft_count_word(const char *str, char c)
+size_t	ft_count_word(const char *str, char c)
 {
 	int		i;
 	size_t	count;

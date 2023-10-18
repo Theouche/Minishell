@@ -76,7 +76,10 @@ void	checkcmd(char **cmd, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(path, cmd, data->cpyenv);
+		if (!path)
+			ft_printf("%s : command not found\n", cmd[0]);
+		else if (access(path, X_OK) == 0)
+			execve(path, cmd, data->cpyenv);
 	}
 	else if (pid > 0)
 	{

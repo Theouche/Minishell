@@ -78,12 +78,12 @@ char	*replace_dol(t_data *data, char *str)
 	{
 		while (str[i] && str[i] != 36)
 			ret = add_char(ret, str[i++]);
-		if (str[i + 1] && str[i + 1] == '?' && to_change(str, i))
+		if (str[i] && str[i + 1] && str[i + 1] == '?' && to_change(str, i))
 		{
 			ret = special_case(data, ret);
 			i += 2;
 		}
-		else if (str[i + 1] && to_change(str, i))
+		else if (str[i] && str[i + 1] && to_change(str, i))
 		{
 			ret = replace_dol_2(data, str, ret, i);
 			i++;

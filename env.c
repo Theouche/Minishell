@@ -32,5 +32,6 @@ int	apply_env(t_data *data)
 	{
 		ft_printf("%s\n", data->cpyenv[i]);
 	}
+	data->status = 0;
 	return (3);
 }

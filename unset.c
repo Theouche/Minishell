@@ -84,7 +84,10 @@ void	ft_unset(t_data *data, char **unset)
 		if (check_arg_unset(unset[i]) == 1)
 			do_unset(data, unset[i]);
 		else
+		{
+			data->status = 1;
 			ft_printf("this arg : %s is wrong\n", unset[i]);
+		}
 	}
 }
 
@@ -99,6 +102,7 @@ int	apply_unset(t_data *data, char **cmd)
 		len++;
 	clean_cmd = malloc(sizeof(char *) * (len + 1));
 	clean_cmd[0] = ft_strdup(cmd[0]);
+	data->status = 0;
 	i = 1;
 	while (cmd[i])
 	{

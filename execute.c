@@ -35,6 +35,7 @@ int	is_builtin(t_data *data, char *cmd)
 	if (ft_strcmp(split[0], "echo") == 0)
 	{
 		ft_free_split(split);
+		data->status = 0;
 		return (apply_echo(cmd, data));
 	}
 	else if (ft_strcmp(split[0], "pwd") == 0)

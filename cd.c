@@ -42,12 +42,19 @@ int	apply_cd(t_data *data, char **dir)
 
 	old_cd = getcwd(NULL, 0);
 	old_pwd = ft_strjoin("OLDPWD=", old_cd);
+	data->status = 0;
 	if (!dir[1] || (dir[1][0] == '~' && dir[1][1] == '\0'))
 		chdir(data->home);
 	else if (dir[2])
+	{
+		data->status = 1;
 		ft_printf("cd: too many arguments\n");
+	}
 	else if (chdir(dir[1]) == -1)
+	{
+		data->status = 1;
 		ft_printf("cd: no such file or directory: %s\n", dir[1]);
+	}
 	change_pwd_env(data, old_pwd);
 	ft_free_split(dir);
 	free(old_cd);

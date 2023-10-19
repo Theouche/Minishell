@@ -72,7 +72,10 @@ void	ft_export(t_data *data, char **export)
 		if (check_arg_export(export[i]) == 1)
 			do_export(data, export[i]);
 		else
+		{
+			data->status = 1;
 			ft_printf("this arg : %s is wrong\n", export[i]);
+		}
 	}
 }
 
@@ -112,6 +115,7 @@ int	apply_export(t_data *data, char **cmd)
 	clean_cmd = malloc(sizeof(char *) * (len + 1));
 	clean_cmd[0] = ft_strdup(cmd[0]);
 	i = 1;
+	data->status = 0;
 	while (cmd[i])
 	{
 		if (is_quote(cmd[i]) == 1)

@@ -24,5 +24,6 @@ int	apply_pwd(t_data *data)
 		ft_printf("%c", pwd[j]);
 	ft_printf("\n");
 	free(pwd);
+	data->status = 0;
 	return (2);
 }

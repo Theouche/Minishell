@@ -101,7 +101,8 @@ int	apply_echo(char *cmd, t_data *data)
 	}
 	while (cmd[i] && ((cmd[i] >= 9 && cmd[i] <= 13) || cmd[i] == 32))
 		i++;
-	if (cmd[i] == '-' && cmd[i + 1] == 'n')
+	if (cmd[i] == '-' && cmd[i + 1] == 'n'
+		&& (cmd[i + 2] == ' ' || cmd[i + 2] == 0))
 	{
 		arg = 1;
 		i = i + 2;

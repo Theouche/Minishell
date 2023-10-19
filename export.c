@@ -108,9 +108,7 @@ int	apply_export(t_data *data, char **cmd)
 	int		len;
 	char	**clean_cmd;
 
-	len = 0;
-	while (cmd[len])
-		len++;
+	len = len_tab(cmd);
 	clean_cmd = malloc(sizeof(char *) * (len + 1));
 	clean_cmd[0] = ft_strdup(cmd[0]);
 	i = 1;

@@ -6,7 +6,7 @@
 #    By: tlorne <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 15:46:06 by tlorne            #+#    #+#              #
-#    Updated: 2023/09/22 15:46:50 by tlorne           ###   ########.fr        #
+#    Updated: 2023/10/18 16:00:50 by tlorne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = main.c init.c no_env.c execute.c ft_parse_2.c handle_dollar.c ft_execute2.
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
 ### COLORS ###
 

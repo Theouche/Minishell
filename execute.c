@@ -54,15 +54,21 @@ int	is_builtin(t_data *data, char *cmd)
 void	execute_cmd(t_data *data, char *cmd)
 {
 	char	**split;
+	char	*cmd_2;
 
 	if (!is_builtin(data, cmd))
 	{
-		split = ft_split(cmd, ' ');
+		if (is_quote(cmd))
+			cmd_2 = remove_quote(cmd);
+		else
+			cmd_2 = ft_strdup(cmd);
+		split = ft_split(cmd_2, ' ');
 		if (ft_strcmp(split[0], "./minishell") == 0)
 			special_case_1(data, split);
 		else
 			checkcmd(split, data);
 		ft_free_split(split);
+		free(cmd_2);
 		return ;
 	}
 }

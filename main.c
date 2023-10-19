@@ -84,8 +84,10 @@ int	follow_up(t_data *data, char *prompt, int not)
 			}
 			else
 				follow_up_2(data);
+			end_turn(data, prompt);
 		}
-		end_turn(data, prompt);
+		else
+			free(prompt);
 	}
 	if (not == 0)
 		free(prompt);
@@ -105,6 +107,7 @@ int	main(int argc, char **argv, char **env)
 	}
 	data = ft_calloc(sizeof(t_data), 1);
 	ft_init(data, env);
+	do_export(data, "SHLVL=1");
 	set_signal();
 	while (42)
 	{

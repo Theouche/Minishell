@@ -123,7 +123,10 @@ int	apply_export(t_data *data, char **cmd)
 		i++;
 	}
 	clean_cmd[len] = 0;
-	ft_export(data, clean_cmd);
+	if (clean_cmd[1] == 0)
+		special_env(data);
+	else
+		ft_export(data, clean_cmd);
 	ft_free_split(cmd);
 	ft_free_split(clean_cmd);
 	return (4);

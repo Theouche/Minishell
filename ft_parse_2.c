@@ -66,7 +66,7 @@ int	get_cmd(t_data *data, int i)
 	char	*tmp;
 
 	tmp = ft_remove_first_space(data->fsplit[i]);
-	if (tmp)
+	if (tmp[0])
 		data->cmd[i] = ft_strdup(tmp);
 	else
 	{
@@ -101,7 +101,7 @@ int	ft_check_and_parse(t_data *data, char *prompt)
 			return (0);
 		i++;
 	}
-	if (all_com_ok(data->cmd) == 1)
+	if (all_com_ok(data, data->cmd) == 1)
 		return (1);
 	else
 		return (0);

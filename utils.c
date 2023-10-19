@@ -41,12 +41,25 @@ int	red_not_ok(char *cmd, char c)
 	return (0);
 }
 
-int	all_com_ok(char **cmd)
+int	special_free_pb_dollar_give_null(t_data *data)
+{
+	if (data->fsplit)
+		ft_free_split(data->fsplit);
+	if (data->cmd)
+		ft_free_split(data->cmd);
+	if (data->prompt)
+		free(data->prompt);
+	return (0);
+}
+
+int	all_com_ok(t_data *data, char **cmd)
 {
 	int		i;
 	char	c;
 
 	i = 0;
+	if (cmd[0] == 0)
+		return (special_free_pb_dollar_give_null(data));
 	while (cmd[i])
 	{
 		if (check_only_space(cmd[i]) == 1)

@@ -90,7 +90,7 @@ int		new_std_outin(int output_fd, int input_fd, char *cmd, t_data *data);
 char	*recupthepath(t_data *data, char *cmd);
 int		check_only_space(char *str);
 int		exitstatus(int status);
-int		all_com_ok(char **cmd);
+int		all_com_ok(t_data *data, char **cmd);
 void	end_turn(t_data *data, char *prompt);
 void	end_prog(t_data *data, char *prompt);
 void	no_env(t_data *data);
@@ -109,5 +109,6 @@ char	*ft_get_env(t_data *data, char *sch);
 int		is_dollar(char *str);
 int		check_end(t_data *data, char *prompt);
 char	give_fq(char fq, char c);
+void	special_env(t_data *data);
 
 #endif

@@ -12,6 +12,17 @@
 
 #include "minishell.h"
 
+void	special_env(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (data->cpyenv[++i])
+	{
+		ft_printf("declare -x %s\n", data->cpyenv[i]);
+	}
+}
+
 int	apply_env(t_data *data)
 {
 	int	i;
